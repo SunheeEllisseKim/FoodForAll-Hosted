@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-qbjjgfy_tp-$9-(*p(n0!#k$+x*#gpmg$_el*q5_gu-7v*)!_2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tranquil-tundra-49633.herokuapp.com', '127.0.0.1']
 
 #Twitter credentials
 
