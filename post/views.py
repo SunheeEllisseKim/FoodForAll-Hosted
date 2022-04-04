@@ -19,4 +19,4 @@ def index(request):
 
                 return redirect('index')
 
-        return render(request,'post/index.html')
+        return render(request,'post.html')

@@ -22,5 +22,5 @@ from post import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    #path('', views.index, name='index')
+    path('post/', views.index, name='index')
 ]
