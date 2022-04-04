@@ -1,5 +1,5 @@
 """
-WSGI config for twitterT project.
+WSGI config for CSCE315P3 project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'twitterT.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CSCE315P3.settings')
 
 application = get_wsgi_application()
