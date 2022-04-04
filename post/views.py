@@ -14,7 +14,7 @@ def index(request):
                 auth = tweepy.OAuthHandler(settings.API_KEY, settings.API_KEY_SECRET)
                 auth.set_access_token(settings.ACCESS_TOKEN, settings.ACCESS_TOKEN_SECRET)
                 api = tweepy.API(auth)
-                api = update_status(content)
+                api.update_status(content)
 
                 return redirect('index')
 
