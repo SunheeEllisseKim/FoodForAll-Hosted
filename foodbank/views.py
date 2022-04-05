@@ -24,4 +24,13 @@ def index(request):
 
     #foodBankAndCovidData = "\n\n <span style="white-space: pre-line"> <br> <<br/>> <p>This is Line1 </span></p> <p>This is Line2</p>here we go"
     #v = render(request, "index.html", {"today": today})
+    if request.method == 'POST':
+            print("POST METHOD")
+            content = request.POST.get('content', '')
+            print("inputAddress")
+            if content:
+                print('Content', content)
+                foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content))
+    #inputAddress = request.POST.get('inputAddress', '')
+
     return render(request, "index1.html", {"FoodBankData": foodBankAndCovidData})

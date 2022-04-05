@@ -39,7 +39,7 @@ def returnDataForRecipient(address):
         postCode = foodBanksDict[i]['postcode']
         CollectedStr = CollectedStr+' Name of Charity/Food Bank: '+ foodBanksDict[i]['name'] + "<br />"
         CollectedArr.append('Name of Charity/Food Bank: '+ foodBanksDict[i]['name'])
-        #print('postcode of Organization: ', postCode)
+        print('postcode of Organization: ', postCode)
         postCode = postCode.replace(' ', '%20')
         covidAPIStr = covidAPILink + postCode
         #print("covidAPIStr::::",covidAPIStr)
@@ -64,6 +64,40 @@ def returnDataForRecipient(address):
 
         CollectedArr.append('Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")")
     return CollectedStr
+def returnDataForTransport(postCode):
+    #address = '115 New Cavendish Street'#input('Enter Address of Pickup:\n') #115 New Cavendish Street example location
+    postCode = postCode.replace(' ', '%20')
+    #NW1 8YS -> NW1208YS
+    #SE1 8TY (postcode by foodbank)
+    #1) receive UTLA value from covid API for conversion from postcode
+    covidAPILink = 'https://api.coronavirus.data.gov.uk/generic/code/postcode/'
+    covidAPIStr = covidAPILink + postCode
+    covidAPIResponse = requests.get(covidAPIStr)
+    utlaDataResults = covidAPIResponse.json()
+
+    # retrieve the general coronovirus data from this postcode
+    covidAPIStrResultingCases = 'https://api.coronavirus.data.gov.uk/generic/soa/utla/'+utlaDataResults['utla']+'/newCasesBySpecimenDate'
+
+    covidAPIResponse2 = requests.get(covidAPIStrResultingCases)
+    covidResults = covidAPIResponse2.json()
+    #print('covidResults', covidResults)
+
+    #print('Last known number of Covid Cases: ',covidResults['payload']['value'], " (date = "+covidResults['date']+")")
+        
+    covidLevel = covidResults['payload']['value']
+    categoryOfLevel = ""
+    if(float(covidLevel) < 20):
+        categoryOfLevel = "LOW"
+    elif (float(covidLevel) < 55):
+        categoryOfLevel = "MEDIUM"
+    else:
+        categoryOfLevel = "HIGH"
+
+    CollectedStr ='Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")" + "<br />"
+    print(CollectedStr)
+    return CollectedStr
+#returnDataForTransport('NW1 8YS')
+
 
 #print(fox[0]['distance_m'])
 #from __future__ import division, unicode_literals 
