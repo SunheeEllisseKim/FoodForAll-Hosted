@@ -1,6 +1,6 @@
 
 #from asyncio.windows_events import NULL
-#import requests
+import requests
 
 
 def returnDataForRecipient(address):
@@ -8,7 +8,7 @@ def returnDataForRecipient(address):
     return address
     #address2 = '12 Millbank, Westminster, London SW1P 4QE'
     
-    '''addressStr = 'https://www.givefood.org.uk/api/2/locations/search/?address='+address+'&?cause=Food Banks, Food Pantries, and Food Distribution'
+    addressStr = 'https://www.givefood.org.uk/api/2/locations/search/?address='+address+'&?cause=Food Banks, Food Pantries, and Food Distribution'
     response = requests.get(addressStr)
     #print(response.json())
     foodBanksDict = response.json()
@@ -65,9 +65,9 @@ def returnDataForRecipient(address):
 
         CollectedArr.append('Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")")
     return CollectedStr
-    '''
+    
 def returnDataForTransport(postCode):
-    '''
+    
     #address = '115 New Cavendish Street'#input('Enter Address of Pickup:\n') #115 New Cavendish Street example location
     postCode = postCode.replace(' ', '%20')
     #NW1 8YS -> NW1208YS
@@ -99,7 +99,7 @@ def returnDataForTransport(postCode):
     CollectedStr ='Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")" + "<br />"
     print(CollectedStr)
     return CollectedStr
-    '''
+    
 #returnDataForTransport('NW1 8YS')
 
 
