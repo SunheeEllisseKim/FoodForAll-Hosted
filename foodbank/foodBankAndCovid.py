@@ -4,8 +4,8 @@ import requests
 
 
 def returnDataForRecipient(address):
-    #address = '115 New Cavendish Street'#input('Enter Address of Pickup:\n') #115 New Cavendish Street example location
-
+    address = '115 New Cavendish Street'#input('Enter Address of Pickup:\n') #115 New Cavendish Street example location
+    return address
     #address2 = '12 Millbank, Westminster, London SW1P 4QE'
     addressStr = 'https://www.givefood.org.uk/api/2/locations/search/?address='+address+'&?cause=Food Banks, Food Pantries, and Food Distribution'
     response = requests.get(addressStr)
