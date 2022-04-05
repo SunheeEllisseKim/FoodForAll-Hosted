@@ -1,1 +1,1 @@
-web: gunicorn twitterT.wsgi --log-file -
+web: gunicorn CSCE315P3.wsgi --log-file -
