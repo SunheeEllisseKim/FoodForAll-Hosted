@@ -13,10 +13,11 @@
   <body>
     <h1>Thanks For Donating!</h1>
     <div class="container">
+      
       <form method="post" action='.'>
         {%csrf_token%}
         <label for="name", class="form-label">Submit Name for Tweet</label>
-        <input type="text" class="form-control" id="inputName" name="content"><br>
+        <input type="text" class="form-control" id="inputName" name="inputAddr"><br>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <form class="row g-3">
