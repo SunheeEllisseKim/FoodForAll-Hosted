@@ -1,4 +1,3 @@
-
 """
 Django settings for CSCE315P3 project.
 
@@ -92,12 +91,8 @@ WSGI_APPLICATION = 'CSCE315P3.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'CLIENT': {
-            "host":"mongodb+srv://foodForAllDB:foodForAllDB1010@cluster0.hirh8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-        "name":"mytestdb",
-        "authMechanism":"SCRAM-SHA-1" # for connection to the atlas cloud db 
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 import dj_database_url
