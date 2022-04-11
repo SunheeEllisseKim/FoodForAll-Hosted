@@ -46,15 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'post',
-    #'foodbank',
-    'rest_framework', #ADDED 7:24
-    'corsheaders', #ADDED
-   
-    'foodbank.apps.FoodbankConfig' #ADDED
+    'foodbank'
 ]
-CORSE_ORIGIN_ALLOW_ALL = True 
+
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', #ADDED
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
