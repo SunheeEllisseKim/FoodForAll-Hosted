@@ -1,3 +1,4 @@
+
 """
 Django settings for CSCE315P3 project.
 
@@ -46,10 +47,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'post',
-    'foodbank'
+    #'foodbank',
+    'rest_framework', #ADDED 7:24
+    'corsheaders', #ADDED
+   
+    'foodbank.apps.FoodbankConfig' #ADDED
 ]
-
+CORSE_ORIGIN_ALLOW_ALL = True 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', #ADDED
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -86,8 +92,12 @@ WSGI_APPLICATION = 'CSCE315P3.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            "host":"mongodb+srv://foodForAllDB:foodForAllDB1010@cluster0.hirh8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+        "name":"mytestdb",
+        "authMechanism":"SCRAM-SHA-1" # for connection to the atlas cloud db 
+        }
     }
 }
 import dj_database_url
