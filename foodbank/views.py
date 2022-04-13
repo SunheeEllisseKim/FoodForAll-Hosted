@@ -9,7 +9,7 @@ from foodbank import foodBankAndCovid
 
 
 # Create your views here.
-def index(request):
+def food(request):
     print("at INDEX", request)
     today = datetime.datetime.now().date()
     print("***")
