@@ -2,13 +2,14 @@ import tweepy
 
 from django.conf import settings
 from django.shortcuts import render, redirect
-from .forms import DonorForm
+from home.forms import DonorForm
 from django.http import HttpResponseRedirect
 # Create your views here.
 
 def tweet(request):
     form = ''
     submitted = False
+    
     if request.method =='POST':
         if 'tweet' in request.POST:
             print("hello")
@@ -21,6 +22,7 @@ def tweet(request):
                 auth.set_access_token(settings.ACCESS_TOKEN, settings.ACCESS_TOKEN_SECRET)
                 api = tweepy.API(auth)
                 api.update_status(content)
+                return redirect('post') 
 
             return render(request,'post.html')
         elif 'contact' in request.POST:
@@ -31,7 +33,6 @@ def tweet(request):
                 form.save()
                 return HttpResponseRedirect('/post.html?submitted=True')
     else:
-        
         form = DonorForm
         if 'submitted' in request.GET:
             submitted = True

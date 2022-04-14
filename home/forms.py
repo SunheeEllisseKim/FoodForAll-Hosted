@@ -1,6 +1,7 @@
 from django import forms
 from django.forms import ModelForm
-from home import models
+from . import models
+
 class DonorForm(ModelForm):
     class Meta:
         model = models.FoodDonor
