@@ -1,5 +1,8 @@
 from django.urls import include, re_path
 from foodbank import views
+from django.urls import path
+from . import views
+
 ''' Postman
 
 Postman DELETE http://127.0.0.1:8000/banks/2 (delete FoodBankID=2)
@@ -28,7 +31,10 @@ donations:
 
 
 '''
+print("foodbank urls py")
+
 urlpatterns=[
+    path('',views.index, name='index'),
     re_path(r'^foodbanks$',views.foodBankApi),
     re_path(r'^foodbanks/([0-9]+)$', views.foodBankApi),
 

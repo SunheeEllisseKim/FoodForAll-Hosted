@@ -10,16 +10,31 @@
 
     <title>Donate Food</title>
   </head>
+
   <body>
+    
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/post">Donate</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/food_bank">Foodbanks</a>
+      </li>
+    </ul>    
+
     <h1>Thanks For Donating!</h1>
+
     <div class="container">
-      
       <form method="post" action='.'>
         {%csrf_token%}
         <label for="name", class="form-label">Submit Name for Tweet</label>
-        <input type="text" class="form-control" id="inputName" name="inputAddr"><br>
+        <input type="text" class="form-control" id="inputName" name="content"><br>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
+
       <form class="row g-3">
         <div class="col-md-6">
           <label for="inputEmail4" class="form-label">Email</label>

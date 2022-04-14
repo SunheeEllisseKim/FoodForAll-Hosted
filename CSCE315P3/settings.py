@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'post',
+    'food_bank',
     #'foodbank',
     'rest_framework', #ADDED 7:24
     'corsheaders', #ADDED
