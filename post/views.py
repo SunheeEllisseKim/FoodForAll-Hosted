@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 # Create your views here.
 
 def tweet(request):
-    form = ''
+    donation = ''
     submitted = False
     
     if request.method =='POST':
@@ -27,17 +27,17 @@ def tweet(request):
             return render(request,'post.html')
         elif 'contact' in request.POST:
 
-            form = DonorForm(request.POST)
-            print(form)
-            if form.is_valid():
-                form.save()
+            donation = DonorForm(request.POST)
+            print(donation)
+            if donation.is_valid():
+                donation.save()
                 return HttpResponseRedirect('/post.html?submitted=True')
     else:
-        form = DonorForm
+        donation = DonorForm
         if 'submitted' in request.GET:
             submitted = True
     
-    return render(request,'post.html',{'form' : form, 'submitted' : submitted})
+    return render(request,'post.html',{'donation' : donation, 'submitted' : submitted})
     
     
     
