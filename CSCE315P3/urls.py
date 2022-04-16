@@ -23,7 +23,7 @@ from foodbank import views as v2
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('post/', v1.index, name='index'),
+    path('post/', v1.CreateTweet, name='CreateTweet'),
     path('foodbank/', v2.index, name='index'),
-    re_path(r'^',include('foodbank.urls'))
+    re_path(r'^', include('foodbank.urls'))
 ]

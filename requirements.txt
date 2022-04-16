@@ -84,4 +84,3 @@ virtualenvwrapper-win==1.2.7
 waitress==2.1.1
 wcwidth==0.2.5
 whitenoise==6.0.0
-
