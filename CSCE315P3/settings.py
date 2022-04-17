@@ -10,6 +10,7 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+import dj_database_url
 from lib2to3.pytree import Base
 import os
 from pathlib import Path
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qbjjgfy_tp-$9-(*p(n0!#k$+x*#gpmg$_el*q5_gu-7v*)!_2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['tranquil-tundra-49633.herokuapp.com', '127.0.0.1']
 
@@ -35,10 +36,6 @@ API_KEY = 'dagfLMqANcdV8VCBwhtUBb3iT'
 API_KEY_SECRET = '3sP33hu1qrS8373I7FBLL076njTKQKH7r9tkLPpewZWfN9seti'
 ACCESS_TOKEN = '1510756212396240901-4sVMHQ6bDP8EjnGXCEyG1rhSVeaslN'
 ACCESS_TOKEN_SECRET = 'Q7Nlf4uqpY4IWJXRpxPiC90xifZ0x0k3YyFRPGOkDoxZx'
-
-# css and js files
-STATIC_FILES = ["/home/static/"]
-
 
 # Application definition
 
@@ -51,15 +48,16 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'home',
     'post',
+    'food_bank',
     #'foodbank',
-    'rest_framework', #ADDED 7:24
-    'corsheaders', #ADDED
-   
-    'foodbank.apps.FoodbankConfig' #ADDED
+    'rest_framework',  # ADDED 7:24
+    'corsheaders',  # ADDED
+
+    'foodbank.apps.FoodbankConfig'  # ADDED
 ]
-CORSE_ORIGIN_ALLOW_ALL = True 
+CORSE_ORIGIN_ALLOW_ALL = True
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', #ADDED
+    'corsheaders.middleware.CorsMiddleware',  # ADDED
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -98,13 +96,12 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            "host":"mongodb+srv://foodForAllDB:foodForAllDB1010@cluster0.hirh8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-        "name":"mytestdb",
-        "authMechanism":"SCRAM-SHA-1" # for connection to the atlas cloud db 
+            "host": "mongodb+srv://foodForAllDB:foodForAllDB1010@cluster0.hirh8.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+            "name": "mytestdb",
+            "authMechanism": "SCRAM-SHA-1"  # for connection to the atlas cloud db
         }
     }
 }
-import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=600)
 DATABASES['default'].update(db_from_env)
 
@@ -143,10 +140,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
+    # os.path.join(BASE_DIR, "post/static")
 ]
 print("base dir path", BASE_DIR)
 
