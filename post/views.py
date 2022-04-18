@@ -62,9 +62,12 @@ def CreateTweet(request):
         return render(request,'post.html')
 def findMatchingFoodBankDatabaseValue(foodbankName, foodbankAddr, foodBankPostalCode, foodBankCity):
     URL = "https://tranquil-tundra-49633.herokuapp.com/banks"
-  
-
-
+    print("+"*50)
+    print('foodbankName', foodbankName)
+    print('foodbankAddr', foodbankAddr)
+    print('foodBankPostalCode', foodBankPostalCode)
+    print('foodBankCity', foodBankCity)
+    print("+"*50)
     # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
     #myobj = {'DonationName':DonationName, "DonationName": DonationName, "DonationAllergies": DonationAllergies, "DonationFoodBank": "n/a",
 
@@ -76,7 +79,13 @@ def findMatchingFoodBankDatabaseValue(foodbankName, foodbankAddr, foodBankPostal
     lastKnownIndex = -999
     for i in range(len(returnedBanksList)):
         lastKnownIndex = returnedBanksList[i]['FoodBankID']
-        if returnedBanksList[i]['FoodBankName']  == foodbankName and returnedBanksList[i]['FoodBankZipCode'] == foodBankPostalCode and returnedBanksList[i]['FoodBankCity'] == foodBankCity and returnedBanksList[i]['FoodBankAddress'] == foodbankAddr:
+        print("!"*50)
+        print('foodbankName', returnedBanksList[i]['FoodBankName'], returnedBanksList[i]['FoodBankName'].strip()  == foodbankName.strip())
+        print('FoodBankZipCode', returnedBanksList[i]['FoodBankZipCode'], " versus ", foodBankPostalCode, returnedBanksList[i]['FoodBankZipCode'].strip() == foodBankPostalCode.strip() )
+        print('FoodBankCity', returnedBanksList[i]['FoodBankCity'])
+        print('FoodBankAddress', returnedBanksList[i]['FoodBankAddress'], returnedBanksList[i]['FoodBankAddress'].strip() == foodbankAddr.strip())
+        print("!"*50)
+        if returnedBanksList[i]['FoodBankName'].strip()  == foodbankName.strip() and returnedBanksList[i]['FoodBankZipCode'].strip() == foodBankPostalCode.strip() and returnedBanksList[i]['FoodBankAddress'].strip() == foodbankAddr.strip():
             print("returnedBanksList[i]['FoodBankZipCode']",returnedBanksList[i]['FoodBankID'])
             return returnedBanksList[i]['FoodBankID']
             
