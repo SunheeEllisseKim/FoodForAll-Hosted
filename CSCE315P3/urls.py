@@ -16,13 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import include
-
+from django.urls import include, re_path
 from post import views as v1
-from foodbank import views as v2
+from food_bank import views as v2
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
-    path('post/', v1.index, name='index'),
-    path('foodbank/', v2.index, name='index')
+    path('post/', v1.CreateTweet, name='CreateTweet'),
+    path('food_bank/', v2.index, name='index'),
+    re_path(r'^',include('foodbank.urls'))
 ]

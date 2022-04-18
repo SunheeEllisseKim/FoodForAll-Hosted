@@ -62,7 +62,7 @@ def returnDataForRecipient(address):
         else:
             categoryOfLevel = "HIGH"
         CollectedStr = CollectedStr + 'Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")" + "<br />"
-
+        print('REACH END OF COVID CASES')
         CollectedArr.append('Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")")
     return CollectedStr
     
