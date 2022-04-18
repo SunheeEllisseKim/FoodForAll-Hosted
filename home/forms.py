@@ -1,16 +1,28 @@
 from django import forms
 from django.forms import ModelForm
-from . import models
+from foodbank import models
 
 class DonorForm(ModelForm):
     class Meta:
-        model = models.FoodDonor
-        fields = ('name', 'email', 'phone', 'zipcode', 'points')
-
+        model = models.Donation
+        fields = ('DonorTwitter', 'DonorEmail','DonorAddress', 'DonorZipCode', 'DonationName', 'DonationQuantity', 'DonationAllergies', 'DonationFoodBank')
+        labels = {
+            'DonorTwitter': 'Twitter Handle',
+            'DonorEmail':'Email',
+            'DonorAddress':'Address',
+            'DonorZipCode':'Zip Code',
+            'DonationName': 'Food',
+            'DonationQuantity': 'Qty',
+            'DonationAllergies': 'Allergy Concerns',
+            'DonationFoodBank': 'Food Bank',
+        }
         widgets = {
-            'name': forms.TextInput(attrs={'class':'form-control'}),
-            'email':forms.EmailInput(attrs={'class':'form-control'}),
-            'phone':forms.TextInput(attrs={'class':'form-control'}),
-            'zipcode':forms.TextInput(attrs={'class':'form-control'}),
-            'points':forms.TextInput(attrs={'class':'form-control'})
+            'DonorTwitter':forms.TextInput(attrs={'class':'form-control', 'name':"content"}),
+            'DonorEmail':forms.EmailInput(attrs={'class':'form-control'}),
+            'DonorAddress':forms.TextInput(attrs={'class':'form-control'}),
+            'DonorZipCode':forms.TextInput(attrs={'class':'form-control'}),
+            'DonationName': forms.TextInput(attrs={'class':'form-control'}),
+            'DonationQuantity': forms.TextInput(attrs={'class':'form-control'}),
+            'DonationAllergies': forms.TextInput(attrs={'class':'form-control'}),
+            'DonationFoodBank': forms.TextInput(attrs={'class':'form-control'}),
         }
