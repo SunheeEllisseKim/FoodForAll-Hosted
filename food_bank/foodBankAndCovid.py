@@ -103,7 +103,7 @@ def returnDataForRecipient(address):
 
     return CollectedStr
 def findMatchingFoodBankDatabaseValue(foodbankName, foodbankAddr, foodBankPostalCode, foodBankCity):
-    return 1
+    
     URL = "https://tranquil-tundra-49633.herokuapp.com/banks"
     print("+"*50)
     print('foodbankName', foodbankName)
