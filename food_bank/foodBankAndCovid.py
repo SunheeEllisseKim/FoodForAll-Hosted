@@ -103,6 +103,7 @@ def returnDataForRecipient(address):
 
     return CollectedStr
 def findMatchingFoodBankDatabaseValue(foodbankName, foodbankAddr, foodBankPostalCode, foodBankCity):
+    return 1
     URL = "https://tranquil-tundra-49633.herokuapp.com/banks"
     print("+"*50)
     print('foodbankName', foodbankName)
@@ -199,7 +200,7 @@ def returnDataForTransport(postCode):
     return CollectedStr
     
 #returnDataForTransport('NW1 8YS')
-returnDataForRecipient("115 New Cavendish Street")
+#returnDataForRecipient("115 New Cavendish Street")
 
 #print(fox[0]['distance_m'])
 #from __future__ import division, unicode_literals 
