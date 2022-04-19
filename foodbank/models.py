@@ -17,6 +17,8 @@ class Donation(models.Model):
     DonorAddress = models.CharField(max_length=500)
     DonorZipCode = models.CharField(max_length=500)
     DonationQuantity =models.IntegerField()
+    DonationDeliveryStatus = models.BooleanField(null=False)
+    DonationDriver= models.CharField(max_length=500)
     Status = models.CharField(max_length=200, null=True, choices=STATUS)
 
 class FoodBanks(models.Model):
