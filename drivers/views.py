@@ -32,7 +32,9 @@ def DonationsForBank(userinput):
             for j in range(len(returnedDonationsList)):
                 donationFoodBank = returnedDonationsList[j]['DonationFoodBank']
                 print("Checking donation's foodbank: ",donationFoodBank)
-                if (donationFoodBank == str(foodbankID)):
+                print("returnedDonationsList[j]['DonationDeliveryStatus']", returnedDonationsList[j]['DonationDeliveryStatus'])
+                print("donationFoodBank == str(foodbankID)", donationFoodBank == str(foodbankID))
+                if (donationFoodBank == str(foodbankID) and returnedDonationsList[j]['DonationDeliveryStatus'] == False):
                     print("donation foodbank matches")
                     listOfDonations.append(returnedDonationsList[j])
             return listOfDonations

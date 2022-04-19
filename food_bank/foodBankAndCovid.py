@@ -94,7 +94,7 @@ def returnDataForRecipient(address):
             returnedDonationList = r_don.json()
             print(len(returnedDonationList))
             for indexV in range(len(returnedDonationList)):
-                if str(returnedDonationList[indexV]["DonationFoodBank"]).strip()  == str(foodbankID).strip():
+                if str(returnedDonationList[indexV]["DonationFoodBank"]).strip()  == str(foodbankID).strip() and (returnedDonationList[indexV]["DonationDeliveryStatus"]  == True or returnedDonationList[indexV]["DonationDeliveryStatus"] is None):
                     CollectedStr = CollectedStr + "             Donation Name: "+ returnedDonationList[indexV]["DonationName"] +"<br />"
                     CollectedStr = CollectedStr + "             Donation Allergies: "+ returnedDonationList[indexV]["DonationAllergies"]+"<br />"
                     CollectedStr = CollectedStr + "             Donation Quantity: "+ str(returnedDonationList[indexV]["DonationQuantity"])+"<br />"
