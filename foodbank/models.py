@@ -4,15 +4,22 @@ from django.db import models
 
 # model to store department and employee details
 class Donation(models.Model):
+    STATUS = (
+        ('Pending', 'Pending'),
+        ('Out for delivery', 'Out for delivery'),
+        ('Delivered', 'Delivered')
+    )
     DonationID = models.AutoField(primary_key=True)
-    DonationName = models.CharField(max_length=500, blank=True)
-    DonationAllergies = models.CharField(max_length=500, blank=True)
-    DonationFoodBank= models.CharField(max_length=500, blank=True)
-    DonorEmail = models.CharField(max_length=500, blank=True)
-    DonorAddress = models.CharField(max_length=500, blank=True)
-    DonorZipCode = models.CharField(max_length=500, blank=True)
+    DonationName = models.CharField(max_length=500)
+    DonationAllergies = models.CharField(max_length=500)
+    DonationFoodBank= models.CharField(max_length=500)
+    DonorEmail = models.CharField(max_length=500)
+    DonorAddress = models.CharField(max_length=500)
+    DonorZipCode = models.CharField(max_length=500)
     DonationQuantity =models.IntegerField()
-    DonorTwitter = models.CharField(max_length=500)
+    DonationDeliveryStatus = models.BooleanField(null=False)
+    DonationDriver= models.CharField(max_length=500)
+    Status = models.CharField(max_length=200, null=True, choices=STATUS)
 
 class FoodBanks(models.Model):
     FoodBankID = models.AutoField(primary_key=True)

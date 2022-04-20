@@ -4,12 +4,15 @@ import requests
 
 
 def returnDataForRecipient(address):
+    print('reached returnDataForRecipient')
     #address = '115 New Cavendish Street'#input('Enter Address of Pickup:\n') #115 New Cavendish Street example location
 
     #address2 = '12 Millbank, Westminster, London SW1P 4QE'
     
     addressStr = 'https://www.givefood.org.uk/api/2/locations/search/?address='+address+'&?cause=Food Banks, Food Pantries, and Food Distribution'
+    print("addrStr", addressStr)
     response = requests.get(addressStr)
+    print("addr Response", response)
     #print(response.json())
     foodBanksDict = response.json()
     #print(foodBanksDict)
@@ -29,16 +32,16 @@ def returnDataForRecipient(address):
         CollectedStr = CollectedStr+"-"*50+"<br>"
         CollectedArr. append("-"*50+"<br>")
         print('Distance from location (meters):',str(foodBanksDict[i]['distance_m']))
-        CollectedStr = CollectedStr+"<br>"+'Distance from location (meters):'+str(foodBanksDict[i]['distance_m'])+ "<br />"
+        CollectedStr = CollectedStr+"<br>"+'       Distance from location (meters):'+str(foodBanksDict[i]['distance_m'])+ "<br />"
         CollectedArr.append('Distance from location (meters):'+str(foodBanksDict[i]['distance_m']))
         print('Name of Charity/Food Bank: ', foodBanksDict[i]['name'])
-        CollectedStr = CollectedStr+'Name of Charity/Food Bank: '+ foodBanksDict[i]['name']+ "<br />"
+        CollectedStr = CollectedStr+'       Name of Charity/Food Bank: '+ foodBanksDict[i]['name']+ "<br />"
         print('Address of Charity/Food Bank: ', foodBanksDict[i]['address'])
-        CollectedStr = CollectedStr+'Address of Charity/Food Bank: '+ foodBanksDict[i]['address'] + "<br />"
+        CollectedStr = CollectedStr+'       Address of Charity/Food Bank: '+ foodBanksDict[i]['address'] + "<br />"
         #print('Website of Organization: ', foodBanksDict[i]['urls'])
         #print('District of Organization: ', foodBanksDict[i]['district'])
         postCode = foodBanksDict[i]['postcode']
-        CollectedStr = CollectedStr+' Name of Charity/Food Bank: '+ foodBanksDict[i]['name'] + "<br />"
+        CollectedStr = CollectedStr+'       Name of Charity/Food Bank: '+ foodBanksDict[i]['name'] + "<br />"
         CollectedArr.append('Name of Charity/Food Bank: '+ foodBanksDict[i]['name'])
         print('postcode of Organization: ', postCode)
         postCode = postCode.replace(' ', '%20')
@@ -61,11 +64,107 @@ def returnDataForRecipient(address):
             categoryOfLevel = "MEDIUM"
         else:
             categoryOfLevel = "HIGH"
-        CollectedStr = CollectedStr + 'Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")" + "<br />"
+        CollectedStr = CollectedStr + '       Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")" + "<br />"
         print('REACH END OF COVID CASES')
         CollectedArr.append('Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")")
+
+        foodbankName = foodBanksDict[i]['name']
+        foodBankFirst = foodBanksDict[i]['address']
+        foodBankFirstList = foodBankFirst.split("\r\n")
+        foodbankaddr = ""
+        foodbankCity = ""
+        foodbankZip = ""
+
+        if len(foodBankFirstList) > 1:
+            foodbankaddr= foodBankFirstList[0]
+        if len(foodBankFirstList) > 2:
+            foodbankCity= foodBankFirstList[1]
+        if len(foodBankFirstList) > 3:
+            foodbankZip= foodBankFirstList[2]
+        #foodbankCity = foodBanksDict[0]['city']
+        foodbankZip = foodBanksDict[0]['postcode']
+        print('foodbankCity', foodbankCity, 'foodbankZip', foodbankZip)
+        foodbankID = -999
+        foodbankID = findMatchingFoodBankDatabaseValue(foodbankName,foodbankaddr, foodbankZip, foodbankCity)
+        print("******foodbankID", foodbankID)
+        if foodbankID!= -999:
+            CollectedStr = CollectedStr + "<<<<<Donations Available>>>>>" +"<br />"
+            URL_donations = "https://tranquil-tundra-49633.herokuapp.com/donation"
+            r_don = requests.get(url = URL_donations, params = {})
+            returnedDonationList = r_don.json()
+            print(len(returnedDonationList))
+            for indexV in range(len(returnedDonationList)):
+                if str(returnedDonationList[indexV]["DonationFoodBank"]).strip()  == str(foodbankID).strip() and (returnedDonationList[indexV]["DonationDeliveryStatus"]  == True or returnedDonationList[indexV]["DonationDeliveryStatus"] is None):
+                    CollectedStr = CollectedStr + "             Donation Name: "+ returnedDonationList[indexV]["DonationName"] +"<br />"
+                    CollectedStr = CollectedStr + "             Donation Allergies: "+ returnedDonationList[indexV]["DonationAllergies"]+"<br />"
+                    CollectedStr = CollectedStr + "             Donation Quantity: "+ str(returnedDonationList[indexV]["DonationQuantity"])+"<br />"
+                    CollectedStr = CollectedStr +"<br />"
+            
+
     return CollectedStr
+def findMatchingFoodBankDatabaseValue(foodbankName, foodbankAddr, foodBankPostalCode, foodBankCity):
     
+    URL = "https://tranquil-tundra-49633.herokuapp.com/banks"
+    print("+"*50)
+    print('foodbankName', foodbankName)
+    print('foodbankAddr', foodbankAddr)
+    print('foodBankPostalCode', foodBankPostalCode)
+    print('foodBankCity', foodBankCity)
+    print("+"*50)
+    # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
+    #myobj = {'DonationName':DonationName, "DonationName": DonationName, "DonationAllergies": DonationAllergies, "DonationFoodBank": "n/a",
+
+    # sending get request and saving the response as response object
+    #r = requests.post(url = URL, json = myobj)
+    #print('r',r)
+    r2 = requests.get(url = URL, params = {})
+    returnedBanksList= r2.json()
+    lastKnownIndex = -999
+    for i in range(len(returnedBanksList)):
+        lastKnownIndex = returnedBanksList[i]['FoodBankID']
+        print("!"*50)
+        print('foodbankName', returnedBanksList[i]['FoodBankName'], returnedBanksList[i]['FoodBankName'].strip()  == foodbankName.strip())
+        print('FoodBankZipCode', returnedBanksList[i]['FoodBankZipCode'], " versus ", foodBankPostalCode, returnedBanksList[i]['FoodBankZipCode'].strip() == foodBankPostalCode.strip() )
+        print('FoodBankCity', returnedBanksList[i]['FoodBankCity'])
+        print('FoodBankAddress', returnedBanksList[i]['FoodBankAddress'], returnedBanksList[i]['FoodBankAddress'].strip() == foodbankAddr.strip())
+        print("!"*50)
+        if returnedBanksList[i]['FoodBankName'].strip()  == foodbankName.strip() and returnedBanksList[i]['FoodBankZipCode'].strip() == foodBankPostalCode.strip() and returnedBanksList[i]['FoodBankAddress'].strip() == foodbankAddr.strip():
+            print("returnedBanksList[i]['FoodBankZipCode']",returnedBanksList[i]['FoodBankID'])
+            return returnedBanksList[i]['FoodBankID']
+            
+ 
+    return -999
+
+'''
+def returnDatabaseDonationsFromFoodBank():
+
+    #first find which zip code and  food bank name matches food donor
+    # using the foodbankID will then use donationToFoodBank to view the donationID vals
+    #using donationID vals will take the matching donation
+   
+
+    
+    URL_FindBankID = "https://tranquil-tundra-49633.herokuapp.com/banks"
+
+
+    # api-endpoint
+    URL = "https://tranquil-tundra-49633.herokuapp.com/department"
+    
+    # location given here
+    deptId = 1
+
+    # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
+    myobj = {'DepartmentName':"testadd"}
+    
+    # sending get request and saving the response as response object
+    r = requests.post(url = URL, json = myobj)
+    print('r',r)
+    r2 = requests.get(url = URL, params = {})
+    # extracting data in json format
+    data = r2.json()
+    
+    print('data',data)
+'''
 def returnDataForTransport(postCode):
     
     #address = '115 New Cavendish Street'#input('Enter Address of Pickup:\n') #115 New Cavendish Street example location
@@ -101,7 +200,7 @@ def returnDataForTransport(postCode):
     return CollectedStr
     
 #returnDataForTransport('NW1 8YS')
-
+#returnDataForRecipient("115 New Cavendish Street")
 
 #print(fox[0]['distance_m'])
 #from __future__ import division, unicode_literals 

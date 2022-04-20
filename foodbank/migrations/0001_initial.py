@@ -32,6 +32,8 @@ class Migration(migrations.Migration):
                 ('DonorAddress', models.CharField(max_length=500)),
                 ('DonorZipCode', models.CharField(max_length=500)),
                 ('DonationQuantity', models.IntegerField()),
+                ('DonationDeliveryStatus', models.BooleanField(null=False)),
+                ('DonationDriver', models.CharField(max_length=500)),
             ],
         ),
         migrations.CreateModel(

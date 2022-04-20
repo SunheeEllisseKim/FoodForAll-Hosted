@@ -122,7 +122,7 @@ def donationApi(request, id=0):
 
         return JsonResponse("Deletion successful", safe=False)
 
-print("VIEWS>.py")
+#print("VIEWS>.py")
 TEMPLATE_DIRS = (
     'os.path.join(BASE_DIR, "templates)'
 )
@@ -131,10 +131,10 @@ from foodbank import foodBankAndCovid
 
 # Create your views here.
 def index(request):
-    print('reach INDEX')
-    print("at INDEX", request)
+    #print('reach INDEX')
+    #print("at INDEX", request)
     today = datetime.datetime.now().date()
-    print("***")
+    #print("***")
     #foodBankAndCovidData = foodBankAndCovid()
     foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient('115 New Cavendish Street')
     #print("here getFoodBankAndCovidData",foodBankAndCovidData)
@@ -148,31 +148,31 @@ def index(request):
     #v = render(request, "index.html", {"today": today})
     val = foodBankAndCovid.returnDatabaseFoodBanks()
     if request.method == 'POST':
-            print("POST METHOD")
+            #print("POST METHOD")
             content = request.POST.get('content', '')
-            print("inputAddress")
+            #print("inputAddress")
             content2 = request.POST.get('content2', '')
-            if content2:
-                print('Content2', content2)
+            #if content2:
+                #print('Content2', content2)
             if content:
-                print('Content', content)
+                #print('Content', content)
                 foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content))
     if request.method == 'POST1':
-            print("POST1 METHOD")
+            #print("POST1 METHOD")
             content = request.POST1.get('content', '')
-            print("inputAddress")
+            #print("inputAddress")
             if content:
-                print('Content', content)
+                #print('Content', content)
                 foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content))   
 
     #inputAddress = request.POST.get('inputAddress', '')
     #render(request, "index1.html", {"test": "testingrenderrequewst"})
     return render(request, "index1.html", {"FoodBankData": foodBankAndCovidData})
 def index2(request):
-    print("INDEX 2 foodbank")
-    print("at INDEX", request)
+    #print("INDEX 2 foodbank")
+    #print("at INDEX", request)
     today = datetime.datetime.now().date()
-    print("***")
+   # print("***")
     #foodBankAndCovidData = foodBankAndCovid()
     foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient('115 New Cavendish Street')
     #print("here getFoodBankAndCovidData",foodBankAndCovidData)

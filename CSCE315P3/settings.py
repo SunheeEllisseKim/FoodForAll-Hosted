@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-qbjjgfy_tp-$9-(*p(n0!#k$+x*#gpmg$_el*q5_gu-7v*)!_2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['tranquil-tundra-49633.herokuapp.com', '127.0.0.1']
 
@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home',
     'post',
     'food_bank',
+    'drivers',
     #'foodbank',
     'rest_framework', #ADDED 7:24
     'corsheaders', #ADDED

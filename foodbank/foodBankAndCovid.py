@@ -25,22 +25,22 @@ def returnDataForRecipient(address):
         #print(response.json())
         covidResults = response.json()
         #print('i', fox[i])
-        print('-'*50)
+        #print('-'*50)
         CollectedStr = CollectedStr+"-"*50+"<br>"
         CollectedArr. append("-"*50+"<br>")
-        print('Distance from location (meters):',str(foodBanksDict[i]['distance_m']))
+       # print('Distance from location (meters):',str(foodBanksDict[i]['distance_m']))
         CollectedStr = CollectedStr+"<br>"+'Distance from location (meters):'+str(foodBanksDict[i]['distance_m'])+ "<br />"
         CollectedArr.append('Distance from location (meters):'+str(foodBanksDict[i]['distance_m']))
-        print('Name of Charity/Food Bank: ', foodBanksDict[i]['name'])
+       # print('Name of Charity/Food Bank: ', foodBanksDict[i]['name'])
         CollectedStr = CollectedStr+'Name of Charity/Food Bank: '+ foodBanksDict[i]['name']+ "<br />"
-        print('Address of Charity/Food Bank: ', foodBanksDict[i]['address'])
+       # print('Address of Charity/Food Bank: ', foodBanksDict[i]['address'])
         CollectedStr = CollectedStr+'Address of Charity/Food Bank: '+ foodBanksDict[i]['address'] + "<br />"
         #print('Website of Organization: ', foodBanksDict[i]['urls'])
         #print('District of Organization: ', foodBanksDict[i]['district'])
         postCode = foodBanksDict[i]['postcode']
         CollectedStr = CollectedStr+' Name of Charity/Food Bank: '+ foodBanksDict[i]['name'] + "<br />"
         CollectedArr.append('Name of Charity/Food Bank: '+ foodBanksDict[i]['name'])
-        print('postcode of Organization: ', postCode)
+        #print('postcode of Organization: ', postCode)
         postCode = postCode.replace(' ', '%20')
         covidAPIStr = covidAPILink + postCode
         #print("covidAPIStr::::",covidAPIStr)
@@ -51,7 +51,7 @@ def returnDataForRecipient(address):
 
         covidAPIResponse2 = requests.get(covidAPIStrResultingCases)
         covidResults = covidAPIResponse2.json()
-        print('Last known number of Covid Cases: ',covidResults['payload']['value'], " (date = "+covidResults['date']+")")
+        #print('Last known number of Covid Cases: ',covidResults['payload']['value'], " (date = "+covidResults['date']+")")
         
         covidLevel = covidResults['payload']['value']
         categoryOfLevel = ""
@@ -62,7 +62,7 @@ def returnDataForRecipient(address):
         else:
             categoryOfLevel = "HIGH"
         CollectedStr = CollectedStr + 'Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")" + "<br />"
-        print('REACH END OF COVID CASES')
+        #print('REACH END OF COVID CASES')
         CollectedArr.append('Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")")
     return CollectedStr
     
@@ -97,7 +97,7 @@ def returnDataForTransport(postCode):
         categoryOfLevel = "HIGH"
 
     CollectedStr ='Covid Level ' + categoryOfLevel + " with "+str(covidResults['payload']['value'])+ " Cases (date = "+str(covidResults['date'])+")" + "<br />"
-    print(CollectedStr)
+    #print(CollectedStr)
     return CollectedStr
     
 #returnDataForTransport('NW1 8YS')
