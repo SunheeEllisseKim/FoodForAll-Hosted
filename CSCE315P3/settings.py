@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'home',
     'post',
     'food_bank',
+    'drivers',
     #'foodbank',
     'rest_framework', #ADDED 7:24
     'corsheaders', #ADDED

@@ -25,5 +25,6 @@ urlpatterns = [
     path('', include('home.urls')),
     path('post/', v1.CreateTweet, name='CreateTweet'),
     path('food_bank/', v2.index, name='index'),
-    re_path(r'^',include('foodbank.urls'))
+    re_path(r'^',include('foodbank.urls')),
+    path('drivers/',include('drivers.urls'))
 ]

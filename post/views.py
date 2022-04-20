@@ -46,7 +46,7 @@ def CreateTweet(request):
 
             # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
             myobj = {'DonationName':DonationName, "DonationName": DonationName, "DonationAllergies": DonationAllergies, "DonationFoodBank": str(foodbankVal),
-        "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": 1}
+        "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": 1, "DonationDeliveryStatus": False, "DonationDriver": "not assigned"}
             
             # sending get request and saving the response as response object
             r = requests.post(url = URL, json = myobj)

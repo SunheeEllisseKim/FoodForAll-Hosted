@@ -94,7 +94,7 @@ def returnDataForRecipient(address):
             returnedDonationList = r_don.json()
             print(len(returnedDonationList))
             for indexV in range(len(returnedDonationList)):
-                if str(returnedDonationList[indexV]["DonationFoodBank"]).strip()  == str(foodbankID).strip():
+                if str(returnedDonationList[indexV]["DonationFoodBank"]).strip()  == str(foodbankID).strip() and (returnedDonationList[indexV]["DonationDeliveryStatus"]  == True or returnedDonationList[indexV]["DonationDeliveryStatus"] is None):
                     CollectedStr = CollectedStr + "             Donation Name: "+ returnedDonationList[indexV]["DonationName"] +"<br />"
                     CollectedStr = CollectedStr + "             Donation Allergies: "+ returnedDonationList[indexV]["DonationAllergies"]+"<br />"
                     CollectedStr = CollectedStr + "             Donation Quantity: "+ str(returnedDonationList[indexV]["DonationQuantity"])+"<br />"
@@ -103,6 +103,7 @@ def returnDataForRecipient(address):
 
     return CollectedStr
 def findMatchingFoodBankDatabaseValue(foodbankName, foodbankAddr, foodBankPostalCode, foodBankCity):
+    
     URL = "https://tranquil-tundra-49633.herokuapp.com/banks"
     print("+"*50)
     print('foodbankName', foodbankName)
@@ -199,7 +200,7 @@ def returnDataForTransport(postCode):
     return CollectedStr
     
 #returnDataForTransport('NW1 8YS')
-returnDataForRecipient("115 New Cavendish Street")
+#returnDataForRecipient("115 New Cavendish Street")
 
 #print(fox[0]['distance_m'])
 #from __future__ import division, unicode_literals 
