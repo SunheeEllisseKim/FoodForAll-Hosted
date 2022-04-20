@@ -54,21 +54,20 @@ def DonationsForBank(userinput):
 
 
 def drivers(request):
-    submitted = False
+    context=''
     if request.method == 'POST':
         userinput = request.POST.get('FoodBankName')
         print("USER INPUT: ", userinput)
         queryset = DonationsForBank(userinput)
-        submitted = True
         if queryset == False:
             #couldn't find food bank
             found = 'not found'
             context = {'string':"food bank not registered in database"}
-            #return render(request, 'drivers.html', context)
+            return render(request, 'drivers.html', context)
         elif (len(queryset) == 0):
             #no donations for that food bank
             context = {'string':"no donations for that food bank"}
-            #return render(request, 'drivers.html', context)
+            return render(request, 'drivers.html', context)
         else:
             pretty = json.dumps(queryset[0], indent=4)
             print("=========="*13)
@@ -77,8 +76,7 @@ def drivers(request):
             for k in range(len(queryset)):
                 ToPrint += (json.dumps(queryset[k], indent=4) + '\n\n')
             context = {'string':ToPrint}
-            #return render(request, 'drivers.html', context, submitted)
-        return HttpResponseRedirect('/drivers?submitted=True')
+            return render(request, 'drivers.html', context, submitted)
 
 
         # if queryset:
@@ -96,5 +94,5 @@ def drivers(request):
     else:
         context = {'string':"string"}
     
-    return render(request, 'drivers.html', context, submitted)
+    return render(request, 'drivers.html', context)
 
