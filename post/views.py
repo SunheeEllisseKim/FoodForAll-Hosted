@@ -41,20 +41,20 @@ def CreateTweet(request):
             foodbankVal = findFoodBank(donorAddr, donorZip)
             if foodbankVal >= 0:
                 totalStr = "Successfully Uploaded Donation Entry"
-                URL = "https://tranquil-tundra-49633.herokuapp.com/donation"
+                URL_donation = "https://tranquil-tundra-49633.herokuapp.com/donation"
     
                 # location given here
                 deptId = 1
 
                 # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
-                myobj = {'DonationName':DonationName, "DonationName": DonationName, "DonationAllergies": DonationAllergies, "DonationFoodBank": str(foodbankVal),
+                myobj = {'DonationName':DonationName,  "DonationAllergies": DonationAllergies, "DonationFoodBank": str(foodbankVal),
             "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": 1, "DonationDeliveryStatus": False, "DonationDriver": "not assigned"}
                 
                 print('myobj', myobj)
                 # sending get request and saving the response as response object
-                r = requests.post(url = URL, json = myobj)
+                r = requests.post(url = URL_donation, json = myobj)
                 print('r',r)
-                r2 = requests.get(url = URL, params = {})
+                r2 = requests.get(url = URL_donation, params = {})
                 # extracting data in json format
                 data = r2.json()
                 
