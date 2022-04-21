@@ -39,7 +39,7 @@ def CreateTweet(request):
                 print('donorZip', donorZip)
 
             foodbankVal = findFoodBank(donorAddr, donorZip)
-            if foodbankVal > 0:
+            if foodbankVal >= 0:
                 totalStr = "Successfully Uploaded Donation Entry"
                 URL = "https://tranquil-tundra-49633.herokuapp.com/donation"
     
@@ -50,6 +50,7 @@ def CreateTweet(request):
                 myobj = {'DonationName':DonationName, "DonationName": DonationName, "DonationAllergies": DonationAllergies, "DonationFoodBank": str(foodbankVal),
             "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": 1, "DonationDeliveryStatus": False, "DonationDriver": "not assigned"}
                 
+                print('myobj', myobj)
                 # sending get request and saving the response as response object
                 r = requests.post(url = URL, json = myobj)
                 print('r',r)
@@ -128,7 +129,8 @@ def findFoodBank(address, zip):
     statusCode = returnJsonVal_FoodBankAPI(address, zip).status_code
     print("STATUS CODE",statusCode)
     if(statusCode == 200):
-
+        addressStr = 'https://www.givefood.org.uk/api/2/locations/search/?address='+address+'&?postcode='+zip+'&?cause=Food Banks, Food Pantries, and Food Distribution'
+        response = requests.get(addressStr)
         print("PRINT VIEWS response.json()",response.json())
         foodBanksDict = response.json()
         #print(foodBanksDict)
