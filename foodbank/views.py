@@ -53,6 +53,16 @@ def foodBankApi(request, id=0):
             return JsonResponse("Successfully added", safe=False)
         return JsonResponse("Failure to add", safe=False)
     elif request.method=='PUT':
+        '''
+        bank_data=JSONParser().parse(request)
+        bank = banks.objects.get(FoodBankID=bank_data['FoodBankID'])
+        bank_serializer=banksSerializer(bank,data=bank_data)
+
+        if bank_serializer.is_valid():
+            bank_serializer.save()
+            return JsonResponse("Successfully updated", safe=False)
+        return JsonResponse("Failure to update", safe=False)
+        '''
         foodbank_data=JSONParser().parse(request)
         foodbank = FoodBanks.objects.get(FoodBankID=foodbank_data['FoodBankID'])
         foodbank_serializer=FoodBankSerializer(foodbank,data=foodbank_data)
@@ -81,8 +91,19 @@ def donationToFoodBankApi(request, id=0):
             return JsonResponse("Successfully added", safe=False)
         return JsonResponse("Failure to add", safe=False)
     elif request.method=='PUT':
+        '''
+        bank_data=JSONParser().parse(request)
+        bank = banks.objects.get(FoodBankID=bank_data['FoodBankID'])
+        bank_serializer=banksSerializer(bank,data=bank_data)
+
+        if bank_serializer.is_valid():
+            bank_serializer.save()
+            return JsonResponse("Successfully updated", safe=False)
+        return JsonResponse("Failure to update", safe=False)
+        '''
+
         donationToFoodBank_data=JSONParser().parse(request)
-        donationToFoodBank = FoodBanks.objects.get(BridgeID=donationToFoodBank_data['BridgeID'])
+        donationToFoodBank = DonationToFoodBank.objects.get(BridgeID=donationToFoodBank_data['BridgeID'])
         donationToFoodBank_serializer=DonationToFoodBankSerializer(donationToFoodBank,data=donationToFoodBank_data)
 
         if donationToFoodBank_serializer.is_valid():
@@ -108,8 +129,18 @@ def donationApi(request, id=0):
             return JsonResponse("Successfully added", safe=False)
         return JsonResponse("Failure to add", safe=False)
     elif request.method=='PUT':
+        '''
+        bank_data=JSONParser().parse(request)
+        bank = banks.objects.get(FoodBankID=bank_data['FoodBankID'])
+        bank_serializer=banksSerializer(bank,data=bank_data)
+
+        if bank_serializer.is_valid():
+            bank_serializer.save()
+            return JsonResponse("Successfully updated", safe=False)
+        return JsonResponse("Failure to update", safe=False)
+        '''
         donation_data=JSONParser().parse(request)
-        donation = FoodBanks.objects.get(DonationID=donation_data['DonationID'])
+        donation = Donation.objects.get(DonationID=donation_data['DonationID'])
         donation_serializer=DonationSerializer(donation,data=donation_data)
 
         if donation_serializer.is_valid():
