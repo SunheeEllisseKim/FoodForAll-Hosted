@@ -67,7 +67,7 @@ def testPutFunction():
         "DonationDeliveryStatus": True,
         "DonationDriver": "not assigned EDITEd"
     }        
-    r4 = requests.put(url = URL2, json=[x])
+    r4 = requests.put(url = URL2, json=y)
     print(r4.status_code)
     print('finished')
 def drivers(request):
@@ -134,7 +134,7 @@ def drivers(request):
                             newParams['DonationDriver']= driverName
                             newParams['DonationDeliveryStatus']=True
                             print('newParams', newParams)
-                            r4 = requests.put(url = URL2, data = newParams)
+                            r4 = requests.put(url = URL2, json = newParams)
                             #returnedDonationsList= r4.json()
                 context = {'contentVal':ToPrint}
                 return render(request, 'drivers.html', context)
