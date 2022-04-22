@@ -22,6 +22,8 @@ def CreateTweet(request):
 
                 # return redirect('index')
             #('DonationID', 'DonationName', 'DonationAllergies', 'DonationFoodBank', 'DonorEmail', 'DonorAddress', 'DonorZipCode', 'DonationQuantity')
+            donationQuantity = 1
+            
             DonationName = request.POST.get('DonationName', '')
             if DonationName:
                 print('DonationName', DonationName)
@@ -37,30 +39,54 @@ def CreateTweet(request):
             donorZip = request.POST.get('donorZip', '')
             if donorZip:
                 print('donorZip', donorZip)
+            donationQuantity = request.POST.get('DonationQuantity', '')
+            if donationQuantity:
+                print('DonationQuantity', donationQuantity)
 
+            foodbankVal = -999
             foodbankVal = findFoodBank(donorAddr, donorZip)
-            if foodbankVal >= 0:
+
+            URL = "https://tranquil-tundra-49633.herokuapp.com/donation"
+  
+            # location given here
+            deptId = 1
+            totalStr = ""
+            
+            if foodbankVal != -999:
                 totalStr = "Successfully Uploaded Donation Entry"
-                URL_donation = "https://tranquil-tundra-49633.herokuapp.com/donation"
-    
-                # location given here
-                deptId = 1
+                if DonationName == None or DonationName == "":
+                    DonationName = "n/a"
+                if DonationAllergies == None or DonationAllergies == "":
+                    DonationAllergies = "n/a"
+            
+                if DonationName == None or DonationName == "":
+                    DonationName = "n/a"
+                if donorEmail == None or donorEmail == "":
+                    donorEmail = "n/a"
+                if donorAddr == None or donorAddr == "":
+                    donorAddr = "n/a"
+            
+                if donorZip == None or donorZip == "":
+                    donorZip = "n/a"
 
                 # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
                 myobj = {'DonationName':DonationName,  "DonationAllergies": DonationAllergies, "DonationFoodBank": str(foodbankVal),
-            "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": 1, "DonationDeliveryStatus": False, "DonationDriver": "not assigned"}
-                
-                print('myobj', myobj)
+            "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": donationQuantity, "DonationDeliveryStatus": False, "DonationDriver": "not assigned"}
+                #addingDatabaseEntry(DonationName, DonationAllergies, foodbankVal, donorEmail, donorAddr, donorZip, donationQuantity)
                 # sending get request and saving the response as response object
-                r = requests.post(url = URL_donation, json = myobj)
+                
+                r = requests.post(url = URL, json = myobj)
                 print('r',r)
-                r2 = requests.get(url = URL_donation, params = {})
+                r2 = requests.get(url = URL, params = {})
+            
                 # extracting data in json format
                 data = r2.json()
                 
                 print('data',data)
             else:
                 totalStr = "ERROR: Unable to upload donation entry - check address of donation pickup site"
+
+            
 
 
         # return
