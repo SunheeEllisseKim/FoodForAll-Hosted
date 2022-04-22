@@ -53,16 +53,6 @@ def foodBankApi(request, id=0):
             return JsonResponse("Successfully added", safe=False)
         return JsonResponse("Failure to add", safe=False)
     elif request.method=='PUT':
-        '''
-        bank_data=JSONParser().parse(request)
-        bank = banks.objects.get(FoodBankID=bank_data['FoodBankID'])
-        bank_serializer=banksSerializer(bank,data=bank_data)
-
-        if bank_serializer.is_valid():
-            bank_serializer.save()
-            return JsonResponse("Successfully updated", safe=False)
-        return JsonResponse("Failure to update", safe=False)
-        '''
         foodbank_data=JSONParser().parse(request)
         foodbank = FoodBanks.objects.get(FoodBankID=foodbank_data['FoodBankID'])
         foodbank_serializer=FoodBankSerializer(foodbank,data=foodbank_data)
@@ -91,19 +81,8 @@ def donationToFoodBankApi(request, id=0):
             return JsonResponse("Successfully added", safe=False)
         return JsonResponse("Failure to add", safe=False)
     elif request.method=='PUT':
-        '''
-        bank_data=JSONParser().parse(request)
-        bank = banks.objects.get(FoodBankID=bank_data['FoodBankID'])
-        bank_serializer=banksSerializer(bank,data=bank_data)
-
-        if bank_serializer.is_valid():
-            bank_serializer.save()
-            return JsonResponse("Successfully updated", safe=False)
-        return JsonResponse("Failure to update", safe=False)
-        '''
-
         donationToFoodBank_data=JSONParser().parse(request)
-        donationToFoodBank = DonationToFoodBank.objects.get(BridgeID=donationToFoodBank_data['BridgeID'])
+        donationToFoodBank = FoodBanks.objects.get(BridgeID=donationToFoodBank_data['BridgeID'])
         donationToFoodBank_serializer=DonationToFoodBankSerializer(donationToFoodBank,data=donationToFoodBank_data)
 
         if donationToFoodBank_serializer.is_valid():
@@ -129,18 +108,8 @@ def donationApi(request, id=0):
             return JsonResponse("Successfully added", safe=False)
         return JsonResponse("Failure to add", safe=False)
     elif request.method=='PUT':
-        '''
-        bank_data=JSONParser().parse(request)
-        bank = banks.objects.get(FoodBankID=bank_data['FoodBankID'])
-        bank_serializer=banksSerializer(bank,data=bank_data)
-
-        if bank_serializer.is_valid():
-            bank_serializer.save()
-            return JsonResponse("Successfully updated", safe=False)
-        return JsonResponse("Failure to update", safe=False)
-        '''
         donation_data=JSONParser().parse(request)
-        donation = Donation.objects.get(DonationID=donation_data['DonationID'])
+        donation = FoodBanks.objects.get(DonationID=donation_data['DonationID'])
         donation_serializer=DonationSerializer(donation,data=donation_data)
 
         if donation_serializer.is_valid():
@@ -153,7 +122,7 @@ def donationApi(request, id=0):
 
         return JsonResponse("Deletion successful", safe=False)
 
-print("VIEWS>.py")
+#print("VIEWS>.py")
 TEMPLATE_DIRS = (
     'os.path.join(BASE_DIR, "templates)'
 )
@@ -162,10 +131,10 @@ from foodbank import foodBankAndCovid
 
 # Create your views here.
 def index(request):
-    print('reach INDEX')
-    print("at INDEX", request)
+    #print('reach INDEX')
+    #print("at INDEX", request)
     today = datetime.datetime.now().date()
-    print("***")
+    #print("***")
     #foodBankAndCovidData = foodBankAndCovid()
     foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient('115 New Cavendish Street')
     #print("here getFoodBankAndCovidData",foodBankAndCovidData)
@@ -179,31 +148,31 @@ def index(request):
     #v = render(request, "index.html", {"today": today})
     val = foodBankAndCovid.returnDatabaseFoodBanks()
     if request.method == 'POST':
-            print("POST METHOD")
+            #print("POST METHOD")
             content = request.POST.get('content', '')
-            print("inputAddress")
+            #print("inputAddress")
             content2 = request.POST.get('content2', '')
-            if content2:
-                print('Content2', content2)
+            #if content2:
+                #print('Content2', content2)
             if content:
-                print('Content', content)
+                #print('Content', content)
                 foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content))
     if request.method == 'POST1':
-            print("POST1 METHOD")
+            #print("POST1 METHOD")
             content = request.POST1.get('content', '')
-            print("inputAddress")
+            #print("inputAddress")
             if content:
-                print('Content', content)
+                #print('Content', content)
                 foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content))   
 
     #inputAddress = request.POST.get('inputAddress', '')
     #render(request, "index1.html", {"test": "testingrenderrequewst"})
     return render(request, "index1.html", {"FoodBankData": foodBankAndCovidData})
 def index2(request):
-    print("INDEX 2 foodbank")
-    print("at INDEX", request)
+    #print("INDEX 2 foodbank")
+    #print("at INDEX", request)
     today = datetime.datetime.now().date()
-    print("***")
+   # print("***")
     #foodBankAndCovidData = foodBankAndCovid()
     foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient('115 New Cavendish Street')
     #print("here getFoodBankAndCovidData",foodBankAndCovidData)

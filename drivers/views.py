@@ -3,7 +3,7 @@ from django.shortcuts import render
 import requests
 from foodbank.models import Donation, FoodBanks, banks
 import json
-
+from django.http import HttpResponseRedirect
 # Create your views here.
 
 def DonationsForBank(userinput):
@@ -54,12 +54,14 @@ def DonationsForBank(userinput):
 
 
 def drivers(request):
+    context=''
     if request.method == 'POST':
         userinput = request.POST.get('FoodBankName')
         print("USER INPUT: ", userinput)
         queryset = DonationsForBank(userinput)
         if queryset == False:
             #couldn't find food bank
+            found = 'not found'
             context = {'string':"food bank not registered in database"}
             return render(request, 'drivers.html', context)
         elif (len(queryset) == 0):
@@ -74,8 +76,7 @@ def drivers(request):
             for k in range(len(queryset)):
                 ToPrint += (json.dumps(queryset[k], indent=4) + '\n\n')
             context = {'string':ToPrint}
-            return render(request, 'drivers.html', context)
-
+            return render(request, 'drivers.html', context, submitted)
 
 
         # if queryset:
@@ -92,5 +93,6 @@ def drivers(request):
         # return render(request, 'drivers.html', context)
     else:
         context = {'string':"string"}
-        return render(request, 'drivers.html', context)
+    
+    return render(request, 'drivers.html', context)
 

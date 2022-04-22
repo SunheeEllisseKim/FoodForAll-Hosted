@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 import datetime
-print("VIEWS>.py")
+#print("VIEWS>.py")
 TEMPLATE_DIRS = (
     'os.path.join(BASE_DIR, "templates)'
 )
@@ -10,11 +10,12 @@ from food_bank import foodBankAndCovid
 
 # Create your views here.
 def index(request):
-    print("at INDEX", request)
+    #print("at INDEX", request)
     today = datetime.datetime.now().date()
-    print("***")
+   # print("***")
     #foodBankAndCovidData = foodBankAndCovid()
-    foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient('115 New Cavendish Street')
+    #foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(' ', ' ')
+    foodBankAndCovidData = ""
     #print("here getFoodBankAndCovidData",foodBankAndCovidData)
 
     #response = HttpResponse('index.html')
@@ -25,12 +26,15 @@ def index(request):
     #foodBankAndCovidData = "\n\n <span style="white-space: pre-line"> <br> <<br/>> <p>This is Line1 </span></p> <p>This is Line2</p>here we go"
     #v = render(request, "index.html", {"today": today})
     if request.method == 'POST':
-            print("POST METHOD")
+            #print("POST METHOD")
+            
             content = request.POST.get('content', '')
-            print("inputAddress")
-            if content:
+            givenZip = request.POST.get('givenZip', '')
+            #print("inputAddress")
+            if content and givenZip:
                 print('Content', content)
-                foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content))
+                foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content), str(givenZip))
+           
     #inputAddress = request.POST.get('inputAddress', '')
 
     return render(request, "index1.html", {"FoodBankData": foodBankAndCovidData})
