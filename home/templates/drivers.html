@@ -41,7 +41,7 @@
   </nav>    
 
     <h1>Thanks For Donating!</h1>
-
+    <h1>View Donations For Food Bank: </h2>
     <div class="container">
       <form method="post" action='.'>
         {%csrf_token%}
@@ -51,11 +51,17 @@
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <br>
+      <p> {{contentVal|safe}}</p>
       {{string.as_p}}
-          
+      <h1>Log Food Bank Entry: </h2>
       <form method="post" action='.'>
+        {%csrf_token%}
+        <label for="Deliveries Completed" class="form-label">Associated Food Bank Name</label>
+        <input type="text" class="form-control" id="DeliveryBank" name = "DeliveryBank">
         <label for="Deliveries Completed" class="form-label">Delivery Completed</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" name = "DeliveryName">
+        <input type="text" class="form-control" id="DeliveryName" name = "DeliveryName">
+        <label for="Deliveries Completed" class="form-label">Name of Driver:</label>
+        <input type="text" class="form-control" id="DriverName" name = "DriverName">
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

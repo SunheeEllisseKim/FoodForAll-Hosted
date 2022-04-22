@@ -109,7 +109,7 @@ def donationApi(request, id=0):
         return JsonResponse("Failure to add", safe=False)
     elif request.method=='PUT':
         donation_data=JSONParser().parse(request)
-        donation = FoodBanks.objects.get(DonationID=donation_data['DonationID'])
+        donation = Donation.objects.get(DonationID=donation_data['DonationID'])
         donation_serializer=DonationSerializer(donation,data=donation_data)
 
         if donation_serializer.is_valid():
@@ -117,7 +117,7 @@ def donationApi(request, id=0):
             return JsonResponse("Successfully updated", safe=False)
         return JsonResponse("Failure to update", safe=False)
     elif request.method=='DELETE':
-        donation = FoodBanks.objects.get(DonationID=id)
+        donation = Donation.objects.get(DonationID=id)
         donation.delete()
 
         return JsonResponse("Deletion successful", safe=False)
