@@ -7,71 +7,41 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
 
     <title>Donate Food</title>
   </head>
 
   <body>
     
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-          <a class="navbar-brand" href="#!">Food for All</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/post">Donate Here</a>
-                  </li> <!-- href is appended to url -->
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/drivers active"> Drivers Login</a>
-                  </li>
-                   <!-- this will take you to the nearest food bank + covid data -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="/food_bank"> Access Food</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-  </nav>    
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link active" href="/">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/post">Donate</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/food_bank">Foodbanks</a>
+      </li>
+    </ul>    
 
-    <h1>Thanks For Donating!</h1>
-    <h1>View Donations For Food Bank: </h2>
-    <div class="container">
+
+      {{string}}
+      <br><br>
+
       <form method="post" action='.'>
         {%csrf_token%}
-        <label for="FoodBankName", class="form-label">Associated Food Bank Name</label>
-        <input type="text" class="form-control" id="FoodBankName" name="FoodBankName"><br>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-      <br>
-      <p> {{contentVal|safe}}</p>
-      {{string.as_p}}
-
-
-      <!-- <h1>Log Food Bank Entry: </h2>
-      <form method="post" action='.'>
-        {%csrf_token%}
-        <label for="Deliveries Completed" class="form-label">Associated Food Bank Name</label>
-        <input type="text" class="form-control" id="DeliveryBank" name = "DeliveryBank">
-        <label for="Deliveries Completed" class="form-label">Delivery Completed</label>
-        <input type="text" class="form-control" id="DeliveryName" name = "DeliveryName">
-        <label for="Deliveries Completed" class="form-label">Name of Driver:</label>
-        <input type="text" class="form-control" id="DriverName" name = "DriverName">
+        <label for="DonationIDTaken", class="form-label">Donation ID you want to take</label>
+        <input type="text" class="form-control" id="DonationIDTaken" name="DonationIDTaken"><br>
+        <label for="DriverName", class="form-label">Your Name</label>
+        <input type="text" class="form-control" id="DriverName" name="DriverName"><br>
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
-    </div> -->
-    <!-- Core theme JS-->
-    {% load static %}
-    <!--<script src="{% static 'js/scripts.js' %}"></script>-->
 
+    </div>
+    
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   </body>
