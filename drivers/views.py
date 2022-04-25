@@ -213,7 +213,7 @@ def takeadonation(request):
                 # print("lets head home boys")
                 return redirect('drivers')
         
-        context = {'contentVal':ToPrint+" incorrect donation id probably"}
+        context = {'contentVal':ToPrint+" <br> <p>incorrect donation id probably</p"}
         return render(request, 'drivers2.html', context)
     
     return render(request, 'drivers2.html', context)
