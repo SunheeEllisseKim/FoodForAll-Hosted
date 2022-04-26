@@ -40,12 +40,15 @@
           </div>
       </div>
   </nav> 
-    <h1>Thanks For Donating!</h1>
+    <h1>Thankyou for Donating!</h1>
 
+    <p> {{FoodBankData|safe}}</p>
     <div class="container">
       <form method="post" action='.'>
 
         {%csrf_token%}
+
+        <h2>Personal Info</h2>
         <label for="name", class="form-label">Submit Name for Tweet</label>
         <input type="text" class="form-control" id="inputName" name="content">
 
@@ -60,13 +63,16 @@
 
           
         
-        <h1>Food: </h2>
+        <h2>Food: </h2>
           <label for="formGroupExampleInput" class="form-label">Name</label>
           <input type="text" class="form-control" id="formGroupExampleInput" name = "DonationName" placeholder="Name">
 
 
           <label for="formGroupExampleInput2" class="form-label">Allergies:</label>
           <input type="text" class="form-control" id="formGroupExampleInput3" name = "DonationAllergies" placeholder="nuts, gluten, etc...">
+
+          <label for="formGroupExampleInput2" class="form-label">Quantity:</label>
+          <input type="integer" class="form-control" id="formGroupExampleInput3" name = "DonationQuantity" placeholder="1,2,3...">
           <br>
           <button type="submit" class="btn btn-primary">Submit</button>
 

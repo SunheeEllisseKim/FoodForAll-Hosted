@@ -14,7 +14,8 @@ def index(request):
     today = datetime.datetime.now().date()
    # print("***")
     #foodBankAndCovidData = foodBankAndCovid()
-    foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient('115 New Cavendish Street')
+    #foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(' ', ' ')
+    foodBankAndCovidData = ""
     #print("here getFoodBankAndCovidData",foodBankAndCovidData)
 
     #response = HttpResponse('index.html')
@@ -26,11 +27,14 @@ def index(request):
     #v = render(request, "index.html", {"today": today})
     if request.method == 'POST':
             #print("POST METHOD")
+            
             content = request.POST.get('content', '')
+            givenZip = request.POST.get('givenZip', '')
             #print("inputAddress")
-            if content:
-               # print('Content', content)
-                foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content))
+            if content and givenZip:
+                print('Content', content)
+                foodBankAndCovidData = foodBankAndCovid.returnDataForRecipient(str(content), str(givenZip))
+           
     #inputAddress = request.POST.get('inputAddress', '')
 
     return render(request, "index1.html", {"FoodBankData": foodBankAndCovidData})

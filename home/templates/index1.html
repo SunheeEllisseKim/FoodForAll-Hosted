@@ -37,60 +37,19 @@
       </div>
   </nav> 
 
-    <h1>Nearest Food Bank and Covid Data: From 115 New Cavendish Street</h1>
+    <h1>Nearest Food Bank and Covid Data for entered address: </h1>
     <p> {{FoodBankData|safe}}</p>
     <form method="post" action='.'>
       {%csrf_token%}
       <label for="name", class="form-label"> Address </label>
       <input type="text" class="form-control" id="inputName" name="content"><br>
+
+      <label for="name", class="form-label"> Zipcode </label>
+      <input type="text" class="form-control" id="inputName" name="givenZip"><br>
+
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <form class="row g-3">
-      <div class="col-md-6">
-        <label for="inputEmail4" class="form-label">Email</label>
-        <input type="email" class="form-control" id="inputEmail4">
-      </div>
-      <div class="col-md-6">
-        <label for="inputPassword4" class="form-label">Password</label>
-        <input type="password" class="form-control" id="inputPassword4">
-      </div>
-      <div class="col-12">
-        <label for="inputAddress" class="form-label">Address</label>
-        <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-      </div>
-      <div class="col-12">
-        <label for="inputAddress2" class="form-label">Address 2</label>
-        <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-      </div>
-      <div class="col-md-6">
-        <label for="inputCity" class="form-label">City</label>
-        <input type="text" class="form-control" id="inputCity">
-      </div>
-      <div class="col-md-4">
-        <label for="inputState" class="form-label">State</label>
-        <input type="text" class="form-control" id="inputState">
-      </div>
-      <div class="col-md-2">
-        <label for="inputZip" class="form-label">Zip</label>
-        <input type="text" class="form-control" id="inputZip">
-      </div>
-      <div class="col-12">
-        <button type="submit" class="btn btn-primary">Sign in</button>
-      </div>
-      <h1>Food: </h2>
-      <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label">Name</label>
-        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Name">
-      </div>
-      <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Expiration Date:</label>
-        <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="DD/MM/YYYY">
-      </div>
-      <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label">Allergies:</label>
-        <input type="text" class="form-control" id="formGroupExampleInput3" placeholder="nuts, gluten, etc...">
-      </div>
-    </form>
+    
   </div>
   <!-- Core theme JS-->
   {% load static %}

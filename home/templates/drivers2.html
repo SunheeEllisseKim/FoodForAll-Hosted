@@ -11,7 +11,7 @@
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
 
-    <title>Donate Food</title>
+    <title>Drivers Page</title>
   </head>
 
   <body>
@@ -43,16 +43,20 @@
     <h1>Thanks For Donating!</h1>
     <h1>View Donations For Food Bank: </h2>
     <div class="container">
+      <p> {{contentVal|safe}}</p>
+      {{string.as_p}}
       <form method="post" action='.'>
         {%csrf_token%}
-        <label for="FoodBankName", class="form-label">Associated Food Bank Name</label>
-        <input type="text" class="form-control" id="FoodBankName" name="FoodBankName"><br>
+        <label for="DriverName", class="form-label">Your Name</label>
+        <input type="text" class="form-control" id="DriverName" name="DriverName"><br>
+
+        <label for="DonationIDTaken", class="form-label">Donation ID You Want To Take</label>
+        <input type="text" class="form-control" id="DonationIDTaken" name="DonationIDTaken"><br>
 
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <br>
-      <p> {{contentVal|safe}}</p>
-      {{string.as_p}}
+      
 
 
       <!-- <h1>Log Food Bank Entry: </h2>
