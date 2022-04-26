@@ -4,7 +4,7 @@ import requests
 #from foodbank.models import Donation, FoodBanks, banks
 import json
 from django.http import HttpResponseRedirect
-
+import datetime
 import pandas as pd
 # Create your views here.
 
@@ -32,7 +32,23 @@ def DonationsForBank(userinput):
                 # print("donationFoodBank == str(foodbankID)", donationFoodBank == str(foodbankID))
                 if (donationFoodBank == str(foodbankID) and returnedDonationsList[j]['DonationDeliveryStatus'] == False):
                     # print("donation foodbank matches")
-                    listOfDonations.append(returnedDonationsList[j])
+                    DonationExpirationDate = str(returnedDonationsList[j]["DonationExpirationDateStr"]).strip() 
+                
+                    currDate = datetime.datetime.now().date()
+                    #print('1currdate', currDate, 'DonationExpirationDate', DonationExpirationDate)
+                    #if DonationExpirationDate == None or DonationExpirationDate == "":
+                        #print('3currdate', currDate, 'DonationExpirationDate', DonationExpirationDate)
+                    if DonationExpirationDate != "None":
+                        #print('2currdate', currDate, 'DonationExpirationDate', DonationExpirationDate)
+                        #print()
+                        tempCurrTime = int(currDate.strftime('%Y%m%d'))
+                        datetimeObj = datetime.datetime.strptime(DonationExpirationDate, "%Y-%m-%d").date()
+                        tempExpDate = int(datetimeObj.strftime('%Y%m%d'))
+                        #print('DonationExpirationDate', DonationExpirationDate, "vs currtime", currDate)
+                        #print('DonationExpirationDate2', DonationExpirationDate, "vs currtime", currDate, "currDate>DonationExpirationDate", (tempCurrTime>tempExpDate))
+                        if  (tempCurrTime<tempExpDate):
+
+                            listOfDonations.append(returnedDonationsList[j])
             return listOfDonations
     
     return False #could not find food bank

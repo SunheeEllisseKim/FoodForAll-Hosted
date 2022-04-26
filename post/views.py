@@ -98,7 +98,7 @@ def CreateTweet(request):
                 
                 print('data',data)
             else:
-                totalStr = "ERROR: Unable to upload donation entry - check address of donation pickup site"
+                totalStr = "ERROR: Unable to upload donation entry - check address of donation pickup site or expiration date"
 
             
 

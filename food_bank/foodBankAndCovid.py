@@ -1,7 +1,7 @@
 
 #from asyncio.windows_events import NULL
 import requests
-
+import datetime
 def returnJsonVal_FoodBankAPI(address, zip):
     try:
         addressStr = 'https://www.givefood.org.uk/api/2/locations/search/?address='+address+'&?postcode='+zip+'&?cause=Food Banks, Food Pantries, and Food Distribution'
@@ -107,10 +107,25 @@ def returnDataForRecipient(address, zip):
                     #print('delivery status', (returnedDonationList[indexV]["DonationDeliveryStatus"]))
 
                     if str(returnedDonationList[indexV]["DonationFoodBank"]).strip()  == str(foodbankID).strip() and (returnedDonationList[indexV]["DonationDeliveryStatus"]  == True or returnedDonationList[indexV]["DonationDeliveryStatus"] is None):
-                        CollectedStr = CollectedStr + "            - Donation Name: "+ returnedDonationList[indexV]["DonationName"] +"<br />"
-                        CollectedStr = CollectedStr + "            - Donation Allergies: "+ returnedDonationList[indexV]["DonationAllergies"]+"<br />"
-                        CollectedStr = CollectedStr + "            - Donation Quantity: "+ str(returnedDonationList[indexV]["DonationQuantity"])+"<br />"
-                        CollectedStr = CollectedStr +"<br />"
+                        DonationExpirationDate = str(returnedDonationList[indexV]["DonationExpirationDateStr"]).strip() 
+                      
+                        currDate = datetime.datetime.now().date()
+                        #print('1currdate', currDate, 'DonationExpirationDate', DonationExpirationDate)
+                        #if DonationExpirationDate == None or DonationExpirationDate == "":
+                            #print('3currdate', currDate, 'DonationExpirationDate', DonationExpirationDate)
+                        if DonationExpirationDate != "None":
+                            #print('2currdate', currDate, 'DonationExpirationDate', DonationExpirationDate)
+                            #print()
+                            tempCurrTime = int(currDate.strftime('%Y%m%d'))
+                            datetimeObj = datetime.datetime.strptime(DonationExpirationDate, "%Y-%m-%d").date()
+                            tempExpDate = int(datetimeObj.strftime('%Y%m%d'))
+                            #print('DonationExpirationDate', DonationExpirationDate, "vs currtime", currDate)
+                            #print('DonationExpirationDate2', DonationExpirationDate, "vs currtime", currDate, "currDate>DonationExpirationDate", (tempCurrTime>tempExpDate))
+                            if  (tempCurrTime<tempExpDate): # if expiration date has not been reached yet
+                                CollectedStr = CollectedStr + "            - Donation Name: "+ returnedDonationList[indexV]["DonationName"] +"<br />"
+                                CollectedStr = CollectedStr + "            - Donation Allergies: "+ returnedDonationList[indexV]["DonationAllergies"]+"<br />"
+                                CollectedStr = CollectedStr + "            - Donation Quantity: "+ str(returnedDonationList[indexV]["DonationQuantity"])+"<br />"
+                                CollectedStr = CollectedStr +"<br />"
     else:
         CollectedStr = "ERROR: Address and Zipcode Entry Invalid"
         
