@@ -80,10 +80,12 @@ def CreateTweet(request):
             
                 if donorZip == None or donorZip == "":
                     donorZip = "n/a"
+                if DonationExpirationDate == None or DonationExpirationDate == "":
+                    DonationExpirationDate = "n/a"
 
                 # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
                 myobj = {'DonationName':DonationName,  "DonationAllergies": DonationAllergies, "DonationFoodBank": str(foodbankVal),
-            "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": donationQuantity, "DonationDeliveryStatus": False, "DonationDriver": "not assigned", "DonationExpirationDate": DonationExpirationDate}
+            "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": donationQuantity, "DonationDeliveryStatus": False, "DonationDriver": "not assigned", "DonationExpirationDateStr": DonationExpirationDate}
                 #addingDatabaseEntry(DonationName, DonationAllergies, foodbankVal, donorEmail, donorAddr, donorZip, donationQuantity)
                 # sending get request and saving the response as response object
                 

@@ -4,7 +4,7 @@ from foodbank.models import  Donation, FoodBanks, DonationToFoodBank, banks
 class DonationSerializer(serializers.ModelSerializer):
     class Meta:
         model=Donation
-        fields=('DonationID', 'DonationName', 'DonationAllergies', 'DonationFoodBank', 'DonorEmail', 'DonorAddress', 'DonorZipCode', 'DonationQuantity', 'DonationDeliveryStatus', 'DonationDriver', 'DonationExpirationDate')
+        fields=('DonationID', 'DonationName', 'DonationAllergies', 'DonationFoodBank', 'DonorEmail', 'DonorAddress', 'DonorZipCode', 'DonationQuantity', 'DonationDeliveryStatus', 'DonationDriver', 'DonationExpirationDateStr')
 class FoodBankSerializer(serializers.ModelSerializer):
     class Meta:
         model=FoodBanks
