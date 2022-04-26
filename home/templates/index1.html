@@ -37,20 +37,25 @@
       </div>
   </nav> 
 
-    <h1>Nearest Food Bank and Covid Data for entered address: </h1>
-    <p> {{FoodBankData|safe}}</p>
-    <form method="post" action='.'>
-      {%csrf_token%}
-      <label for="name", class="form-label"> Address </label>
-      <input type="text" class="form-control" id="inputName" name="content"><br>
-
-      <label for="name", class="form-label"> Zipcode </label>
-      <input type="text" class="form-control" id="inputName" name="givenZip"><br>
-
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="container">
+      <h1>Nearest Food Bank and Covid Data: </h1>
     
-  </div>
+      <div class="container2">
+        <p> {{FoodBankData|safe}}</p>
+        <form method="post" action='.'>
+          {%csrf_token%}
+          <label for="name", class="form-label"> Address </label>
+          <input type="text" class="form-control" id="inputName" name="content"><br>
+
+          <label for="name", class="form-label"> Zipcode </label>
+          <input type="text" class="form-control" id="inputName" name="givenZip"><br>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+    
+    </div>
+  
   <!-- Core theme JS-->
   {% load static %}
   <!--<script src="{% static 'js/scripts.js' %}"></script>-->
