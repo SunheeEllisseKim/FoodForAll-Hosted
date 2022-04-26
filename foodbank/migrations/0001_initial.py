@@ -34,7 +34,7 @@ class Migration(migrations.Migration):
                 ('DonationQuantity', models.IntegerField()),
                 ('DonationDeliveryStatus', models.BooleanField(null=False)),
                 ('DonationDriver', models.CharField(max_length=500)),
-                ('DonationExpirationDate', models.CharField(max_length=9)),
+                ('DonationExpirationDate', models.CharField(max_length=500)),
             ],
         ),
         migrations.CreateModel(
