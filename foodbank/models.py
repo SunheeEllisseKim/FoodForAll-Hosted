@@ -19,7 +19,7 @@ class Donation(models.Model):
     DonationQuantity =models.IntegerField()
     DonationDeliveryStatus = models.BooleanField(null=False)
     DonationDriver= models.CharField(max_length=500)
-    DonationExpirationDate = models.DateField()
+    DonationExpirationDate = models.CharField(max_length=9)
    
     Status = models.CharField(max_length=200, null=True, choices=STATUS)
 
