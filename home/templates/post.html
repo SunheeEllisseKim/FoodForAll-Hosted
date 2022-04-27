@@ -40,10 +40,12 @@
           </div>
       </div>
   </nav> 
-    <h1>Thankyou for Donating!</h1>
-
-    <p> {{FoodBankData|safe}}</p>
+    
     <div class="container">
+
+      <h1>Thanks For Donating!</h1>
+      <p> {{FoodBankData|safe}}</p>
+
       <form method="post" action='.'>
 
         {%csrf_token%}
@@ -61,7 +63,7 @@
           <label for="inputZip" class="form-label">Zip</label>
           <input type="text" class="form-control" id="inputZip" name = "donorZip">
 
-          
+        <br>
         
         <h2>Food: </h2>
           <label for="formGroupExampleInput" class="form-label">Name</label>
@@ -77,19 +79,11 @@
           <button type="submit" class="btn btn-primary">Submit</button>
 
       </form>
+      
+      <br>
+
     </div>
-    <section class="py-5">
-        <div class="container my-5">
-            <div class="row justify-content-center">
-                <div class="col-lg-6">
-                    <h2> Mission</h2>
-                    <p class="lead">We here at food for all strive at making this world a better place.</p>
-                    <p class="mb-0"> Our hope is to reduce the amount of food wasted as a contribution to society. Thank you so much for supporting our cause.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+    
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">
