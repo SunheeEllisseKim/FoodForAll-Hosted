@@ -137,15 +137,18 @@ USE_I18N = True
 
 USE_TZ = True
 
+ROOT_PATH = os.path.dirname(__file__)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_URL = 'static/'
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static"),
+# ]
+STATICFILES_DIRS = [os.path.join(ROOT_PATH, 'static')]
 print("base dir path", BASE_DIR)
 
 # Default primary key field type
