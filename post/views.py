@@ -13,6 +13,7 @@ def CreateTweet(request):
             if content:
                 print('Content', content)
 
+
                 # auth = tweepy.OAuthHandler(settings.API_KEY, settings.API_KEY_SECRET)
                 # auth.set_access_token(settings.ACCESS_TOKEN, settings.ACCESS_TOKEN_SECRET)
                 # api = tweepy.API(auth)
@@ -63,6 +64,7 @@ def CreateTweet(request):
                 if content:
                     print('Content', content)
                     client = tweepy.Client(consumer_key=settings.API_KEY, consumer_secret=settings.API_KEY_SECRET, access_token=settings.ACCESS_TOKEN, access_token_secret=settings.ACCESS_TOKEN_SECRET)
+                    content = content + "just donated food!"
                     response = client.create_tweet(text=content)
 
                 totalStr = "Successfully Uploaded Donation Entry"
