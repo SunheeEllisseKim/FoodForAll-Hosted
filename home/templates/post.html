@@ -40,13 +40,16 @@
           </div>
       </div>
   </nav> 
-    <h1>Thanks For Donating!</h1>
-    <p> {{FoodBankData|safe}}</p>
+
     <div class="container">
+      <h1>Thanks For Donating!</h1>
+      <p> {{FoodBankData|safe}}</p>
+    
       <form method="post" action='.'>
 
         {%csrf_token%}
-        <label for="name", class="form-label">Submit Name for Tweet</label>
+        <h2>Personal Info</h2>
+        <label for="name", class="form-label">Submit your Twitter handle for a shoutout!</label>
         <input type="text" class="form-control" id="inputName" name="content">
 
         <label for="inputEmail4" class="form-label">Email</label>
@@ -71,13 +74,12 @@
           <label for="formGroupExampleInput2" class="form-label">Quantity:</label>
           <input type="integer" class="form-control" id="formGroupExampleInput3" name = "DonationQuantity" placeholder="1,2,3...">
 
-          <label for="formGroupExampleInput2" class="form-label">Expiration Date:</label>
-          <input type="date" class="form-control" id="formGroupExampleInput3" name = "DonationExpirationDate" placeholder="date">
           <br>
           <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
 
       </form>
     </div>
+    
     <section class="py-5">
         <div class="container my-5">
             <div class="row justify-content-center">
@@ -90,10 +92,11 @@
             </div>
         </div>
     </section>
+
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Open source software &copy; Food for All 2022</p>
+          <p class="m-0 text-center text-white">Open source software &copy; Food for All 2022</p>
         </div>
     </footer>
     
