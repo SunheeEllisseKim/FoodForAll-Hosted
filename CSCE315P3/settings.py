@@ -153,7 +153,7 @@ STATIC_URL = '/static/'
 #     os.path.join(BASE_DIR, "static"),
 # ]
 
-STATICFILES_DIRS = [os.path.join(ROOT_PATH, 'static')]
+#STATICFILES_DIRS = [os.path.join(ROOT_PATH, 'static')]
 print("base dir path", BASE_DIR)
 
 # Default primary key field type
