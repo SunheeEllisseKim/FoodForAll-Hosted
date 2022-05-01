@@ -1,5 +1,5 @@
 import tweepy
-
+import datetime
 from django.conf import settings
 from django.shortcuts import render, redirect
 import requests
@@ -13,18 +13,26 @@ def CreateTweet(request):
             if content:
                 print('Content', content)
 
+
                 # auth = tweepy.OAuthHandler(settings.API_KEY, settings.API_KEY_SECRET)
                 # auth.set_access_token(settings.ACCESS_TOKEN, settings.ACCESS_TOKEN_SECRET)
                 # api = tweepy.API(auth)
                 # api.update_status(content)
-                client = tweepy.Client(consumer_key=settings.API_KEY, consumer_secret=settings.API_KEY_SECRET, access_token=settings.ACCESS_TOKEN, access_token_secret=settings.ACCESS_TOKEN_SECRET)
-                response = client.create_tweet(text=content)
+          
 
                 # return redirect('index')
             #('DonationID', 'DonationName', 'DonationAllergies', 'DonationFoodBank', 'DonorEmail', 'DonorAddress', 'DonorZipCode', 'DonationQuantity')
             donationQuantity = 1
             
             DonationName = request.POST.get('DonationName', '')
+            DonationExpirationDate = str(request.POST.get('DonationExpirationDate', ''))
+            currDate = datetime.datetime.now().date()
+            if DonationExpirationDate:
+                tempCurrTime = int(currDate.strftime('%Y%m%d'))
+                datetimeObj = datetime.datetime.strptime(DonationExpirationDate, "%Y-%m-%d").date()
+                tempExpDate = int(datetimeObj.strftime('%Y%m%d'))
+                print('DonationExpirationDate', DonationExpirationDate, "vs currtime", currDate)
+                print('DonationExpirationDate2', DonationExpirationDate, "vs currtime", currDate, "currDate>DonationExpirationDate", (tempCurrTime>tempExpDate))
             if DonationName:
                 print('DonationName', DonationName)
             DonationAllergies = request.POST.get('DonationAllergies', '')
@@ -52,7 +60,13 @@ def CreateTweet(request):
             deptId = 1
             totalStr = ""
             
-            if foodbankVal != -999:
+            if foodbankVal != -999 and DonationExpirationDate and (tempCurrTime<tempExpDate):
+                if content:
+                    print('Content', content)
+                    client = tweepy.Client(consumer_key=settings.API_KEY, consumer_secret=settings.API_KEY_SECRET, access_token=settings.ACCESS_TOKEN, access_token_secret=settings.ACCESS_TOKEN_SECRET)
+                    content = content + "just donated food!"
+                    response = client.create_tweet(text=content)
+
                 totalStr = "Successfully Uploaded Donation Entry"
                 if DonationName == None or DonationName == "":
                     DonationName = "n/a"
@@ -68,10 +82,12 @@ def CreateTweet(request):
             
                 if donorZip == None or donorZip == "":
                     donorZip = "n/a"
+                if DonationExpirationDate == None or DonationExpirationDate == "":
+                    DonationExpirationDate = "n/a"
 
                 # defining a params dict for the parameters to be sent to the API "DepartmentName": "Support"
                 myobj = {'DonationName':DonationName,  "DonationAllergies": DonationAllergies, "DonationFoodBank": str(foodbankVal),
-            "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": donationQuantity, "DonationDeliveryStatus": False, "DonationDriver": "not assigned"}
+            "DonorEmail": donorEmail, "DonorAddress": donorAddr,"DonorZipCode": donorZip, "DonationQuantity": donationQuantity, "DonationDeliveryStatus": False, "DonationDriver": "not assigned", "DonationExpirationDateStr": DonationExpirationDate}
                 #addingDatabaseEntry(DonationName, DonationAllergies, foodbankVal, donorEmail, donorAddr, donorZip, donationQuantity)
                 # sending get request and saving the response as response object
                 
@@ -84,7 +100,7 @@ def CreateTweet(request):
                 
                 print('data',data)
             else:
-                totalStr = "ERROR: Unable to upload donation entry - check address of donation pickup site"
+                totalStr = "ERROR: Unable to upload donation entry - check address of donation pickup site or expiration date"
 
             
 

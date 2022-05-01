@@ -40,18 +40,16 @@
           </div>
       </div>
   </nav> 
-    
-    <div class="container">
 
+    <div class="container">
       <h1>Thanks For Donating!</h1>
       <p> {{FoodBankData|safe}}</p>
-
+    
       <form method="post" action='.'>
 
         {%csrf_token%}
-
         <h2>Personal Info</h2>
-        <label for="name", class="form-label">Submit Name for Tweet</label>
+        <label for="name", class="form-label">Submit your Twitter handle for a shoutout!</label>
         <input type="text" class="form-control" id="inputName" name="content">
 
         <label for="inputEmail4" class="form-label">Email</label>
@@ -63,9 +61,9 @@
           <label for="inputZip" class="form-label">Zip</label>
           <input type="text" class="form-control" id="inputZip" name = "donorZip">
 
-        <br>
+          
         
-        <h2>Food: </h2>
+        <h1>Food: </h2>
           <label for="formGroupExampleInput" class="form-label">Name</label>
           <input type="text" class="form-control" id="formGroupExampleInput" name = "DonationName" placeholder="Name">
 
@@ -75,19 +73,30 @@
 
           <label for="formGroupExampleInput2" class="form-label">Quantity:</label>
           <input type="integer" class="form-control" id="formGroupExampleInput3" name = "DonationQuantity" placeholder="1,2,3...">
+
           <br>
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
 
       </form>
-      
-      <br>
-
     </div>
     
+    <section class="py-5">
+        <div class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <h2> Mission</h2>
+                    <p class="lead">We here at food for all strive at making this world a better place.</p>
+                    <p class="mb-0"> Our hope is to reduce the amount of food wasted as a contribution to society. Thank you so much for supporting our cause.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer-->
     <footer class="py-5 bg-dark">
         <div class="container">
-            <p class="m-0 text-center text-white">Open source software &copy; Food for All 2022</p>
+          <p class="m-0 text-center text-white">Open source software &copy; Food for All 2022</p>
         </div>
     </footer>
     
