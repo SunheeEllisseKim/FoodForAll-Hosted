@@ -13,46 +13,66 @@
     <title>Food Banks</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-          <a class="navbar-brand" href="#!">Food for All</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/post">Donate Here</a>
-                  </li> <!-- href is appended to url -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="/drivers"> Drivers Login</a>
-                  </li>
-                   <!-- this will take you to the nearest food bank + covid data -->
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/food_bank"> Access Food</a>
-                  </li>
-              </ul>
-          </div>
-      </div>
-    </nav> 
+    <header>
+      <nav class="navbar nav-bar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid navs">
+            <div class="navbar navbar-brand navbar-dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand nav-link test" target="_blank">
+                      <img src="{% static 'img/FoodForAllLogo-removebg-preview.png' %}" alt=""  alt="..." width="20%" height="20%" class="d-inline-block align-text-top">
+                      Food For All
+                    </a>
+                </div>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse navbar-light" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="/"><h5>Home</h5></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/post">Donate Here</a></li> 
+                    <li class="nav-item"><a class="nav-link" href="/drivers">Drivers Login</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/food_bank">Access Food</a></li>
+                </ul>
+            </div>
+        </div>
+      </nav>
+    </header>
 
     <div class="container"> 
+      <br>
+      <br>
       <h1>Nearest Food Bank and Covid Data for entered address: </h1>
       <p> {{FoodBankData|safe}}</p>
       <form method="post" action='.'>
         {%csrf_token%}
         <label for="name", class="form-label"> Address </label>
-        <input type="text" class="form-control" id="inputName" name="content"><br>
+        <input type="text" class="form-control" id="inputName" name="content" placeholder="115 New Cavendish Street"><br>
 
         <label for="name", class="form-label"> Zipcode </label>
-        <input type="text" class="form-control" id="inputName" name="givenZip"><br>
+        <input type="text" class="form-control" id="inputName" name="givenZip" placeholder="W1W 6UW"><br>
 
         <button type="submit" class="btn btn-primary btn-lg btn-block">Submit</button>
       </form>
       
     </div>
-    
+    <section class="py-5">
+      <div class="container my-5">
+          <div class="row justify-content-center">
+              <div class="col-lg-6">
+                  <h2> Mission</h2>
+                  <p class="lead">We here at food for all strive at making this world a better place.</p>
+                  <p class="mb-0"> Our hope is to reduce the amount of food wasted as a contribution to society. Thank you so much for supporting our cause.
+                  </p>
+              </div>
+          </div>
+      </div>
+  </section>
+
+  <!-- Footer-->
+  <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Open source software &copy; Food for All 2022</p>
+      </div>
+  </footer>
     
     <!-- Core theme JS-->
     {% load static %}
