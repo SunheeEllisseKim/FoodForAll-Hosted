@@ -37,6 +37,14 @@
       </div>
     </nav> 
 
+    <header class="py-5 bg-image-full" style="background-image: url('https://foodforothers.org/wp-content/uploads/2021/09/Untitled-design-800x414.png')">
+      <div class="text-center my-5">
+          <img src="{% static 'img/FoodForAllLogo.png' %}" class="img-fluid rounded-circle mb-4" alt="..." />
+          <h1 class="text-white fs-3 fw-bolder">Welcome</h1>
+         
+      </div>
+    </header>
+
     <div class="container"> 
       <h1>Nearest Food Bank and Covid Data for entered address: </h1>
       <p> {{FoodBankData|safe}}</p>
