@@ -30,10 +30,11 @@
         <style>
             #intro {
               background-image: url("{% static 'img/foodbg.png' %}");
-              height: 100vh;
-              background-size: 100%;
+              height: 75vh;
+              background-size: cover;
               resize: both;
-              
+              position:relative;
+              width: 100%
             }
       
             /* Height for devices larger than 576px */
@@ -46,42 +47,51 @@
                 color: rgb(0, 0, 0) !important;
             }
 
-           
-        </style>
+            .navs{
+                padding-top: 60px;
+                position: absolute;
+                top: 0;
+            }
 
-        <nav id="intro" class="navbar nav-bar navbar-expand-lg navbar-dark navbar-fixed-top bg-image" style="z-index: 2000;">
-            <div class="container-fluid">
-                
-                <div class="navbar navbar-brand navbar-light">
-                    <div class="container-fluid">
-                        <a class="navbar-brand nav-link" target="_blank">
-                        <img src="{% static 'img/FoodForAllLogo-removebg-preview.png' %}" alt="" class="img-fluid rounded-corner mb-2" alt="..." width="20%" class="d-inline-block align-text-top">
-                        Food For All
-                      </a>
+            .bg-image{
+                width:100%;
+                left:0;
+                right:0;
+            }
+           
+            .mid{
+                padding-top: 15%;
+            }
+        </style>
+        <div id="intro" class="bg-image">
+            <nav class="navbar nav-bar navbar-expand-lg navbar-light" style="z-index: 2000;">
+                <div class="container-fluid navs">
+                    <div class="navbar navbar-brand navbar-light">
+                        <div class="container-fluid">
+                            <a class="navbar-brand nav-link" target="_blank">
+                            <!--<img src="{% static 'img/FoodForAllLogo-removebg-preview.png' %}" alt="" class="img-fluid rounded-corner mb-2" alt="..." width="20%" class="d-inline-block align-text-top">-->
+                            <h1 class="text-dark fs-4">Food For All</h1>
+                        </a>
+                        </div>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                    <div class="collapse navbar-collapse navbar-light" id="navbarSupportedContent">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link active" aria-current="page" href="/"><h5>Home</h5></a></li>
+                            <li class="nav-item"><a class="nav-link" href="/post">Donate Here</a></li> 
+                            <li class="nav-item"><a class="nav-link" href="/drivers">Drivers Login</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/food_bank">Access Food</a></li>
+                        </ul>
                     </div>
                 </div>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                
-                <div class="collapse navbar-collapse navbar-light" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/"><h5>Home</h5></a></li>
-                        <li class="nav-item"><a class="nav-link" href="/post">Donate Here</a></li> 
-                        <li class="nav-item"><a class="nav-link" href="/drivers">Drivers Login</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/food_bank">Access Food</a></li>
-                    </ul>
-                </div>
+            </nav>
+            <div class="text-center my-5 mid">
+                <img src="{% static 'img/FoodForAllLogo-removebg-preview.png' %}" alt="..." />
+                <h1 class="text-dark fs-2">Welcome</h1>
+              
             </div>
-        </nav>
+        </div>
         
-        <!--<div id="intro" class="bg-image">
-              <div class="container d-flex align-items-center justify-content-center text-center h-100">
-                <div class="text-dark">
-                  <h1 class="mb-3">Welcome</h1>
-                </div>
-              </div>
-         
-          </div>-->
-          
     </header>
 
     <!-- Content section-->

@@ -16,33 +16,37 @@
   </head>
 
   <body>
-    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container">
-          <a class="navbar-brand" href="#!">Food for All</a>
+  <style>
+
+  </style>
+  <header>
+    <nav class="navbar nav-bar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid navs">
+          <div class="navbar navbar-brand navbar-dark">
+              <div class="container-fluid">
+                  <a class="navbar-brand nav-link test" target="_blank">
+                    <img src="{% static 'img/FoodForAllLogo-removebg-preview.png' %}" alt=""  alt="..." width="20%" class="d-inline-block align-text-top">
+                    Food For All
+                  </a>
+              </div>
+          </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div class="collapse navbar-collapse navbar-light" id="navbarSupportedContent">
               <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/post">Donate Here</a>
-                  </li> <!-- href is appended to url -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="/drivers"> Drivers Login</a>
-                  </li>
-                   <!-- this will take you to the nearest food bank + covid data -->
-                  <li class="nav-item">
-                    <a class="nav-link" href="/food_bank"> Access Food</a>
-                  </li>
+                  <li class="nav-item"><a class="nav-link active" aria-current="page" href="/"><h5>Home</h5></a></li>
+                  <li class="nav-item"><a class="nav-link" href="/post">Donate Here</a></li> 
+                  <li class="nav-item"><a class="nav-link" href="/drivers">Drivers Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="/food_bank">Access Food</a></li>
               </ul>
           </div>
       </div>
-  </nav> 
+    </nav>
+  </header>
 
-    <div class="container">
-      <h1>Thanks For Donating!</h1>
+    <div class="container" style="margin-top:10px"> 
+      
+      <h1 class="text-dark fs-2">Donate Here</h1>
+      <p>Here you can donate food by the filling out the forms found below. <br> We appreciate each and every donation we recieve so feel free to leave your twitter handle for a shoutout.</p>
       <p> {{FoodBankData|safe}}</p>
     
       <form method="post" action='.'>
@@ -53,13 +57,13 @@
         <input type="text" class="form-control" id="inputName" name="content">
 
         <label for="inputEmail4" class="form-label">Email</label>
-          <input type="email" class="form-control" id="inputEmail4" name = "donorEmail">
+          <input type="email" class="form-control" id="inputEmail4" name = "donorEmail" placeholder="john@gmail.com">
 
           <label for="inputAddress" class="form-label">Address</label>
           <input type="text" class="form-control" id="inputAddress" name = "donorAddr" placeholder="1234 Main St">
           
           <label for="inputZip" class="form-label">Zip</label>
-          <input type="text" class="form-control" id="inputZip" name = "donorZip">
+          <input type="text" class="form-control" id="inputZip" name = "donorZip" placeholder="12345">
 
           
         
@@ -79,7 +83,7 @@
 
       </form>
     </div>
-    
+  </body>
     <section class="py-5">
         <div class="container my-5">
             <div class="row justify-content-center">
