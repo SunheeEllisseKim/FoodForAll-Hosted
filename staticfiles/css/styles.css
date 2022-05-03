@@ -341,6 +341,7 @@ svg {
 table {
     caption-side: bottom;
     border-collapse: collapse;
+    width: 100%;
 }
 
 caption {
@@ -361,9 +362,10 @@ tfoot,
 tr,
 td,
 th {
+    padding: 8px;
     border-color: inherit;
     border-style: solid;
-    border-width: 0;
+    border-width: 2px;
 }
 
 label {

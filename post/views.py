@@ -64,7 +64,7 @@ def CreateTweet(request):
                 if content:
                     print('Content', content)
                     client = tweepy.Client(consumer_key=settings.API_KEY, consumer_secret=settings.API_KEY_SECRET, access_token=settings.ACCESS_TOKEN, access_token_secret=settings.ACCESS_TOKEN_SECRET)
-                    content = content + "just donated food!"
+                    content = content + " just donated food!"
                     response = client.create_tweet(text=content)
 
                 totalStr = "Successfully Uploaded Donation Entry"

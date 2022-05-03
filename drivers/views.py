@@ -127,6 +127,8 @@ def drivers(request):
                 ToPrint = ToPrint.replace("DonationDeliveryStatus","Delivery Status",1)
                 ToPrint = ToPrint.replace("DonationDriver","Driver",1)
                 ToPrint = ToPrint.replace("DonationExpirationDateStr","Exp Date",1)
+                print("========================================="*3)
+                print(ToPrint)
 
                     
                 # ToPrint = ""
