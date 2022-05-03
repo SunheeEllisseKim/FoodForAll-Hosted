@@ -114,7 +114,7 @@ def drivers(request):
                 # context = {'contentVal':ToPrint}
                 request.session['OpenDonations'] = queryset
                 df = pd.DataFrame(queryset)
-                dfg = df.groupby(['DonationID','DonationName','DonationAllergies','DonationFoodBank','DonorEmail','DonorAddress','DonorZipCode','DonationQuantity','DonationDeliveryStatus','DonationDriver']).sum()
+                dfg = df.groupby(['DonationID','DonationName','DonationAllergies','DonationFoodBank','DonorEmail','DonorAddress','DonorZipCode','DonationQuantity','DonationDeliveryStatus','DonationDriver','DonationExpirationDateStr']).sum()
                 ToPrint = dfg.to_html()
                 ToPrint = ToPrint.replace("DonationID","ID",1)
                 ToPrint = ToPrint.replace("DonationName","Food",1)
@@ -126,6 +126,8 @@ def drivers(request):
                 ToPrint = ToPrint.replace("DonationQuantity","Quantity",1)
                 ToPrint = ToPrint.replace("DonationDeliveryStatus","Delivery Status",1)
                 ToPrint = ToPrint.replace("DonationDriver","Driver",1)
+                ToPrint = ToPrint.replace("DonationExpirationDateStr","Exp Date",1)
+
                     
                 # ToPrint = ""
                 # for k in range(len(possibleDonations)):
